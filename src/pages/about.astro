@@ -1,0 +1,45 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Container from "@components/container.astro";
+import { Image } from "@astrojs/image/components";
+import { authors } from "@data/authors";
+import Pagetitle from "@components/pagetitle.astro";
+import Link from "@components/ui/link.astro";
+---
+
+<Layout title="About">
+  <Container>
+    <Pagetitle>
+      <Fragment slot="title">About Diffusion Doctor</Fragment>
+      <Fragment slot="desc">The blog about Stable Diffusion image generation</Fragment>
+    </Pagetitle>
+
+    <div class="flex items-center justify-center mt-6">
+      <div class="group">
+        <div class="w-50 aspect-square">
+          <Image
+            src={authors[0].image}
+            format="avif"
+            width={200}
+            height={200}
+            alt="Tadeo Hepperle"
+            class="w-full h-full object-cover rounded transition  group-hover:-translate-y-1 group-hover:shadow-xl"
+          />
+        </div>
+
+        <div class="mt-4 text-center">
+          <h3 class="text-sm text-gray-500"> {authors[0].name}<br>author and developer</h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="mx-auto max-w-xl text-center mt-14">
+      <p class="text-lg leading-relaxed text-gray-600">
+        This is a blog about Stable Diffusion.
+      </p>
+      <div class="mt-8">
+        <Link href="/contact" style="primary">Get in touch</Link>
+      </div>
+    </div>
+  </Container>
+</Layout>
