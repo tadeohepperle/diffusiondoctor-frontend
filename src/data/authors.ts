@@ -1,17 +1,15 @@
-export interface Props {
+export interface Author {
   name: string;
   slug: string;
   image: string;
   bio: string;
 }
 
-export type Author = Props;
-
-export const authors: Props[] = [
-  {
+export const authors = {
+  tadeoHepperle: {
     name: "Tadeo Hepperle",
     slug: "tadeo-hepperle",
     image: "./src/assets/authors/tadeo-hepperle-mask.jpeg",
     bio: "Tadeo Hepperle is a Software Developer with a passion for Rust, Dart and Deep Learning. He loves to explore state of the art generative artificial intelligence models.",
-  },
-];
+  } as Author,
+};

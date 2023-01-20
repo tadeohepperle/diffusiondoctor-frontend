@@ -1,8 +1,9 @@
 ---
 import Container from "@components/container.astro";
 import Postlist from "@components/postlist.astro";
+import { SESSIONS } from "@data/genImage";
 import Layout from "@layouts/Layout.astro";
-import { latestPosts } from "@utils/content";
+import { getLatestPosts } from "@utils/content";
 // Use Astro.glob() to fetch all posts, and then sort them by date.
 // const posts = (await Astro.glob("./blog/*.{md,mdx}")).sort(
 //   (a, b) =>
@@ -10,6 +11,8 @@ import { latestPosts } from "@utils/content";
 //     new Date(a.frontmatter.publishDate).valueOf()
 // );
 // console.log(posts[0].frontmatter.image);
+
+const latestPosts = await getLatestPosts();
 ---
 
 <Layout title="">

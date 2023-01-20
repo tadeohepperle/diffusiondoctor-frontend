@@ -10,6 +10,12 @@ export interface Props {
   num_inference_steps: number;
   sampler_name: string;
   stable_diffusion_model: string;
+  file_type: string;
 }
 
 export type GenImage = Props;
+
+export type Session = Record<string, GenImage>;
+
+import * as __SESSIONS from "./generated/sessions";
+export const SESSIONS = __SESSIONS;

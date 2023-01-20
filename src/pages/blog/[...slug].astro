@@ -3,33 +3,35 @@ import { Image, Picture } from "@astrojs/image/components";
 import Authorcard from "@components/authorcard.astro";
 import Container from "@components/container.astro";
 import Label from "@components/ui/label.astro";
-import { authors } from "@data/authors";
-import { categories } from "@data/category";
 import Layout from "@layouts/Layout.astro";
 import { getFormattedDate } from "@utils/all";
-import { CollectionEntry, getCollection } from "astro:content";
+import { BlogPost, BlogPostData, BlogPostVisual } from "@data/blogPost";
 
-import type { Author } from "@data/authors";
-import type { Category } from "@data/category";
-
-type Props = CollectionEntry<"blog">;
-
+import fs from "fs";
+import path from "path";
 export async function getStaticPaths() {
-  const blog = await getCollection("blog");
-  return blog.map((post) => ({
-    params: { slug: post.slug },
-    props: { post },
-  }));
+  const blogPostFiles = fs.readdirSync("src/blog");
+  let staticPaths: { params: { slug: string }; props: { post: BlogPost } }[] =
+    [];
+  for (const fileName of blogPostFiles) {
+    const slug = path.parse(fileName).name;
+    const exports = await import(`../../blog/m1`);
+    const post: BlogPost = exports.post;
+    console.log(post);
+    staticPaths.push({
+      props: { post },
+      params: { slug },
+    });
+  }
+  return staticPaths;
 }
 
-const { post } = Astro.props;
-
-const { Content, injectedFrontmatter } = await post.render();
-
-const author = authors.find((item) => item.slug === post.data.author) as Author;
-const category = categories.find(
-  (item) => item.slug === post.data.category
-) as Category;
+const post: BlogPost = Astro.props.post;
+console.log("ui");
+console.log(post);
+const Visual: BlogPostVisual = post.visual;
+const data: BlogPostData = post.data;
+const { category, author } = post.data;
 ---
 
 <Layout
@@ -75,7 +77,8 @@ const category = categories.find(
                 {getFormattedDate(post.data.publishDate)}
               </time>
               <span>
-                · {Math.round(injectedFrontmatter.estReadingTime) || "5"} min read
+                <!-- TODO -->
+                · {5} min read
               </span>
             </div>
           </div>
@@ -107,8 +110,7 @@ const category = categories.find(
     <article class="max-w-screen-md mx-auto">
       <div
         class="mx-auto my-3 prose prose-base dark:prose-invert prose-a:text-blue-600">
-        <Content />
-
+        <Visual {data} />
         <div class="flex flex-wrap items-center w-full gap-3 md:w-auto">
           {
             post.data.tags.map((tag) => (
