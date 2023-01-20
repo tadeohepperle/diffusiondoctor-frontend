@@ -22,12 +22,12 @@ export const getFormattedDate = (date: string): string =>
 //   };
 // }
 
-// /** Check if an Image Path is Relative or Absolute */
-// export const checkImageUrl = (image, url) => {
-//   try {
-//     new URL(image);
-//     return image;
-//   } catch (error) {
-//     return new URL(image, url).toString();
-//   }
-// };
+/** Check if an Image Path is Relative or Absolute */
+export const checkImageUrl = (image, url) => {
+  try {
+    new URL(image);
+    return image;
+  } catch (error) {
+    return new URL(image, url).toString();
+  }
+};

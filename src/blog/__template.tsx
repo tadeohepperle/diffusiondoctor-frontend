@@ -1,8 +1,14 @@
 import { authors } from "@data/authors";
-import { BlogPost, BlogPostData, BlogPostVisual } from "@data/blogPost";
+import {
+  BlogPost,
+  BlogPostData,
+  BlogPostDataNoSlug,
+  BlogPostNoSlug,
+  BlogPostVisual,
+} from "@data/blogPost";
 import { categories } from "@data/category";
 
-const data: BlogPostData = {
+const data: BlogPostDataNoSlug = {
   title: "__________",
   excerpt: "________",
   publishDate: "2023-01-18",
@@ -22,4 +28,4 @@ const visual: BlogPostVisual = (pageData: BlogPostData) => {
   );
 };
 
-export const post: BlogPost = { visual, data };
+export const post: BlogPostNoSlug = { visual, data };

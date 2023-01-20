@@ -23,7 +23,11 @@ const latestPosts = await getLatestPosts();
           latestPosts
             .slice(0, 2)
             .map((post) => (
-              <Postlist post={post} aspect="landscape" preloadImage={true} />
+              <Postlist
+                postData={post.data}
+                aspect="landscape"
+                preloadImage={true}
+              />
             ))
         }
       </div>
@@ -31,7 +35,7 @@ const latestPosts = await getLatestPosts();
         {
           latestPosts
             .slice(2)
-            .map((post) => <Postlist post={post} aspect="square" />)
+            .map((post) => <Postlist postData={post.data} aspect="square" />)
         }
       </div>
     </main>

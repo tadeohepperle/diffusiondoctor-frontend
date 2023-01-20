@@ -1,8 +1,11 @@
 ---
-const { align = "center" } = Astro.props;
+export interface Props {
+  alignCenter?: boolean;
+}
+const { alignCenter = true } = Astro.props;
 ---
 
-<div class:list={[align === "center" && "text-center"]}>
+<div class:list={[alignCenter && "text-center"]}>
   <h1
     class="text-3xl font-semibold tracking-tight text-center lg:leading-snug text-brand-primary lg:text-4xl dark:text-white">
     <slot name="title">Title</slot>

@@ -1,5 +1,10 @@
 ---
 import { Image } from "@astrojs/image/components";
+import { Author } from "@data/authors";
+
+export interface Props {
+  author: Author;
+}
 
 const { author } = Astro.props;
 ---
