@@ -1,6 +1,5 @@
 import { authors } from "@data/authors";
 import {
-  BlogPost,
   BlogPostData,
   BlogPostDataNoSlug,
   BlogPostNoSlug,
@@ -15,17 +14,11 @@ const data: BlogPostDataNoSlug = {
   image: "public/images/misc/default_post_header_image.jpeg",
   category: categories.challenge,
   author: authors.tadeoHepperle,
-  tags: ["monster", "stable diffusion"],
+  tags: ["_____"],
 };
 
 const visual: BlogPostVisual = (pageData: BlogPostData) => {
-  return (
-    <div>
-      Hello this is blog
-      <br />
-      THis is title: {pageData.title}
-    </div>
-  );
+  return <div>_____________________</div>;
 };
 
 export const post: BlogPostNoSlug = { visual, data };

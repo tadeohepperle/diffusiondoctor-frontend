@@ -35,17 +35,14 @@ export type BlogPost = {
   visual: BlogPostVisual;
 };
 
-export function dataWithSlug(
-  post: BlogPostNoSlug,
-  slugname: string
-): BlogPostData {
+export function dataWithSlug(post: BlogPostNoSlug, slug: string): BlogPostData {
   let o = { ...post.data };
-  (o as any).slugname = slugname;
+  (o as any).slug = slug;
   return o as BlogPostData;
 }
 
-export function postWithSlug(post: BlogPostNoSlug, slugname: string): BlogPost {
+export function postWithSlug(post: BlogPostNoSlug, slug: string): BlogPost {
   let oData = { ...post.data };
-  (oData as any).slugname = slugname;
+  (oData as any).slug = slug;
   return { visual: post.visual, data: oData } as BlogPost;
 }

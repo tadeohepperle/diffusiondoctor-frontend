@@ -15,10 +15,15 @@
 // };
 
 import { authors } from "@data/authors";
-import { BlogPost, BlogPostData, BlogPostVisual } from "@data/blogPost";
+import {
+  BlogPostData,
+  BlogPostDataNoSlug,
+  BlogPostNoSlug,
+  BlogPostVisual,
+} from "@data/blogPost";
 import { categories } from "@data/category";
 
-const data: BlogPostDataNoSlugname = {
+const data: BlogPostDataNoSlug = {
   title: "Using Stable Diffusion to generate Monsters",
   excerpt: "TODO",
   publishDate: "2023-01-18",
@@ -39,4 +44,4 @@ const visual: BlogPostVisual = (pageData: BlogPostData) => {
   );
 };
 
-export const post: BlogPostNoSlugname = { visual, data };
+export const post: BlogPostNoSlug = { visual, data };

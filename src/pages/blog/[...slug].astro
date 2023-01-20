@@ -5,7 +5,12 @@ import Container from "@components/container.astro";
 import Label from "@components/ui/label.astro";
 import Layout from "@layouts/Layout.astro";
 import { getFormattedDate } from "@utils/all";
-import { BlogPost, BlogPostData, BlogPostVisual } from "@data/blogPost";
+import {
+  BlogPost,
+  BlogPostData,
+  BlogPostVisual,
+  postWithSlug,
+} from "@data/blogPost";
 
 import fs from "fs";
 import path from "path";
@@ -15,9 +20,10 @@ export async function getStaticPaths() {
     [];
   for (const fileName of blogPostFiles) {
     const slug = path.parse(fileName).name;
-    const exports = await import(`../../blog/m1`);
-    const post: BlogPost = exports.post;
-    console.log(post);
+
+    const exports = await import(`../../blog/${slug}.tsx`);
+    const post: BlogPost = postWithSlug(exports.post, slug);
+
     staticPaths.push({
       props: { post },
       params: { slug },
@@ -27,8 +33,6 @@ export async function getStaticPaths() {
 }
 
 const post: BlogPost = Astro.props.post;
-console.log("ui");
-console.log(post);
 const Visual: BlogPostVisual = post.visual;
 const data: BlogPostData = post.data;
 const { category, author } = post.data;
