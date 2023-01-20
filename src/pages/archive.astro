@@ -1,7 +1,7 @@
 ---
 import Container from "@components/container.astro";
 import Pagetitle from "@components/pagetitle.astro";
-import Postlist from "@components/postlist.astro";
+import Postcard from "@components/postcard.astro";
 import Layout from "@layouts/Layout.astro";
 import { getLatestPosts } from "@utils/content";
 const latestPosts = await getLatestPosts();
@@ -17,7 +17,7 @@ const latestPosts = await getLatestPosts();
       <div class="grid gap-10 mt-10 lg:gap-10 md:grid-cols-2 xl:grid-cols-3">
         {
           latestPosts.map((post) => (
-            <Postlist postData={post.data} aspect="square" />
+            <Postcard postData={post.data} aspect="square" />
           ))
         }
       </div>

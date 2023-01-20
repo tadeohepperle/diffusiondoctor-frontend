@@ -6,7 +6,6 @@ import Label from "@components/ui/label.astro";
 import { getFormattedDate } from "@utils/all";
 import { Icon } from "astro-icon";
 import { BlogPostData } from "@data/blogPost";
-import { post } from "blog/__template";
 
 export interface Props {
   preloadImage?: boolean;
@@ -26,9 +25,9 @@ const { postData } = Astro.props;
     )}>
     <a href={"/blog/" + postData.slug}>
       {
-        post.data.image ? (
+        postData.image ? (
           <Picture
-            src={post.data.image}
+            src={postData.image}
             widths={[200, 400, 800]}
             sizes="(max-width: 640px) 90vw, 480px"
             aspectRatio={aspect === "landscape" ? "16:9" : "1:1"}
@@ -56,16 +55,16 @@ const { postData } = Astro.props;
     <a href={"/blog/" + postData.slug}>
       <span
         class="bg-gradient-to-r from-green-200 to-green-100 dark:from-purple-800 dark:to-purple-900 bg-[length:0px_10px] bg-left-bottom bg-no-repeat transition-[background-size] duration-500 hover:bg-[length:100%_3px] group-hover:bg-[length:100%_10px]">
-        {post.data.title}
+        {postData.title}
       </span>
     </a>
   </h2>
 
   <div class="hidden">
     {
-      post.data.excerpt && (
+      postData.excerpt && (
         <p class="mt-2 text-sm text-gray-500 dark:text-gray-400 line-clamp-3">
-          <a href={"/blog/" + postData.slug}>{post.data.excerpt}</a>
+          <a href={"/blog/" + postData.slug}>{postData.excerpt}</a>
         </p>
       )
     }
@@ -91,8 +90,8 @@ const { postData } = Astro.props;
       <span class="text-sm">{postData.author.name}</span>
     </div>
     <span class="text-xs text-gray-300 dark:text-gray-600"> &bull;</span>
-    <time class="text-sm" datetime={post.data.publishDate}>
-      {getFormattedDate(post.data.publishDate)}
+    <time class="text-sm" datetime={postData.publishDate}>
+      {getFormattedDate(postData.publishDate)}
     </time>
   </div>
 </div>

@@ -14,22 +14,15 @@ import {
 
 import fs from "fs";
 import path from "path";
+import { getAllPosts } from "@utils/content";
 export async function getStaticPaths() {
-  const blogPostFiles = fs.readdirSync("src/blog");
-  let staticPaths: { params: { slug: string }; props: { post: BlogPost } }[] =
-    [];
-  for (const fileName of blogPostFiles) {
-    const slug = path.parse(fileName).name;
-
-    const exports = await import(`../../blog/${slug}.tsx`);
-    const post: BlogPost = postWithSlug(exports.post, slug);
-
-    staticPaths.push({
-      props: { post },
-      params: { slug },
-    });
-  }
-  return staticPaths;
+  let allPosts = await getAllPosts();
+  return allPosts.map((e) => {
+    return {
+      props: { post: e },
+      params: { slug: e.data.slug },
+    };
+  });
 }
 
 const post: BlogPost = Astro.props.post;
@@ -54,7 +47,7 @@ const { category, author } = post.data;
       </h1>
 
       <div class="flex justify-center mt-3 space-x-3 text-gray-500">
-        <div class="flex items-center gap-3">
+        <div class="flex items-center gap-3 py-2">
           <div class="relative flex-shrink-0 w-10 h-10">
             {
               author.image && (

@@ -11,9 +11,9 @@ export async function getAllPosts(): Promise<BlogPost[]> {
   let posts: BlogPost[] = [];
   for (const fileName of blogPostFiles) {
     const slug = path.parse(fileName).name;
-    const exports = await import(`../blog/${slug}`);
-    const postNoSlugname: BlogPostNoSlug = exports.post;
-    const post = postWithSlug(postNoSlugname, slug);
+    const exports = await import(`../blog/${slug}.tsx`);
+    const postNoSlug: BlogPostNoSlug = exports.post;
+    const post = postWithSlug(postNoSlug, slug);
     posts.push(post);
   }
   return posts;
@@ -28,5 +28,6 @@ export const getLatestPosts = async (
       new Date(b.data.publishDate).valueOf() -
       new Date(a.data.publishDate).valueOf()
   );
+
   return allPosts.slice(0, limit);
 };

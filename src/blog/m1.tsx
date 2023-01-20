@@ -22,6 +22,7 @@ import {
   BlogPostVisual,
 } from "@data/blogPost";
 import { categories } from "@data/category";
+import { md } from "@utils/markdown";
 
 const data: BlogPostDataNoSlug = {
   title: "Using Stable Diffusion to generate Monsters",
@@ -37,6 +38,23 @@ const data: BlogPostDataNoSlug = {
 const visual: BlogPostVisual = (pageData: BlogPostData) => {
   return (
     <div>
+      {md`
+# title 1
+
+sahsahsa
+asas
+
+This is a list:
+
+- cool content
+- usable for everything
+
+| Table | lul   | whtas that |
+| ----- | ----- | ---------- |
+| ex1   | hahah | 122        |
+
+www.google.com
+      `}
       Hello this is blog
       <br />
       THis is title: {pageData.title}
