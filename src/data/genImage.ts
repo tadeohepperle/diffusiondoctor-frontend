@@ -1,4 +1,4 @@
-export interface Props {
+export interface GenImage {
   slug: string;
   session: string;
   prompt: string;
@@ -13,8 +13,6 @@ export interface Props {
   stable_diffusion_model: string;
   file_type: string;
 }
-
-export type GenImage = Props;
 
 export type Session = Record<string, GenImage>;
 

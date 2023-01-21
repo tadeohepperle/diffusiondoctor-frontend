@@ -14,9 +14,11 @@ import {
 
 import fs from "fs";
 import path from "path";
+
 import { getAllPosts } from "@utils/content";
+
 export async function getStaticPaths() {
-  let allPosts = await getAllPosts();
+  let allPosts: BlogPost[] = await getAllPosts();
   return allPosts.map((e) => {
     return {
       props: { post: e },

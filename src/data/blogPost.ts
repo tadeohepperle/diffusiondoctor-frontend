@@ -1,4 +1,3 @@
-import { post } from "../../blogold/__template";
 import { Category } from "./category";
 import { Author } from "./authors";
 
@@ -35,8 +34,11 @@ export type BlogPost = {
   visual: any;
 };
 
-export function dataWithSlug(post: BlogPostNoSlug, slug: string): BlogPostData {
-  let o = { ...post.data };
+export function dataWithSlug(
+  data: BlogPostDataNoSlug,
+  slug: string
+): BlogPostData {
+  let o = { ...data };
   (o as any).slug = slug;
   return o as BlogPostData;
 }

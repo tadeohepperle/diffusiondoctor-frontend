@@ -5,6 +5,8 @@ import image from "@astrojs/image";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import react from "@astrojs/react";
+import markdownIntegration from "@astropub/md";
+import remarkGfm from "remark-gfm";
 
 // https://astro.build/config
 export default defineConfig({
@@ -17,5 +19,12 @@ export default defineConfig({
     mdx(),
     sitemap(),
     react(),
+    markdownIntegration(),
   ],
+  markdown: {
+    remarkPlugins: [remarkGfm],
+    rehypePlugins: [],
+    // syntaxHighlight: 'shiki'
+    // syntaxHighlight: 'prism'
+  },
 });

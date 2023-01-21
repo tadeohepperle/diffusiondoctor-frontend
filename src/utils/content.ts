@@ -1,26 +1,29 @@
 import {
   BlogPostNoSlug,
-  postWithSlug as postWithSlug,
+  BlogPostDataNoSlug,
+  dataWithSlug,
 } from "./../data/blogPost";
 import { BlogPost } from "@data/blogPost";
 import fs from "fs";
 import path from "path";
 
 export async function getAllPosts(): Promise<BlogPost[]> {
-  const blogPostFiles = await import.meta.glob("../../blog/*.astro");
-  console.log(blogPostFiles);
-  let m = await import("../../blog/blogpost.  astro");
-  console.log(m);-
-
-  // let posts: BlogPost[] = [];
-  // for (const fileName of blogPostFiles) {
-  //   const slug = path.parse(fileName).name;
-  //   const exports = await import(`../../blog/${slug}.tsx`);
-  //   const postNoSlug: BlogPostNoSlug = exports.post;
-  //   const post = postWithSlug(postNoSlug, slug);
-  //   posts.push(post);
-  // }
-  return [];
+  const blogPostFilesFunctionsObject = import.meta.glob("/blog/*.astro");
+  const importFutures = Object.keys(blogPostFilesFunctionsObject).map((k) =>
+    (async () => {
+      const slug = path.parse(k).name;
+      const imports: any = await blogPostFilesFunctionsObject[k]();
+      const blogPostDataNoSlug = imports.data as BlogPostDataNoSlug;
+      const blogPostData = dataWithSlug(blogPostDataNoSlug, slug);
+      const blogPost: BlogPost = {
+        data: blogPostData,
+        visual: imports.default,
+      };
+      return blogPost;
+    })()
+  );
+  const blogPosts = await Promise.all(importFutures);
+  return blogPosts;
 }
 
 export const getLatestPosts = async (

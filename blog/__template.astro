@@ -1,13 +1,10 @@
+---
 import { authors } from "@data/authors";
-import {
-  BlogPostData,
-  BlogPostDataNoSlug,
-  BlogPostNoSlug,
-  BlogPostVisual,
-} from "@data/blogPost";
+import { BlogPostDataNoSlug } from "@data/blogPost";
 import { categories } from "@data/category";
+import { md } from "@utils/markdown";
 
-const data: BlogPostDataNoSlug = {
+export const data: BlogPostDataNoSlug = {
   title: "__________",
   excerpt: "________",
   publishDate: "2023-01-18",
@@ -16,9 +13,14 @@ const data: BlogPostDataNoSlug = {
   author: authors.tadeoHepperle,
   tags: ["_____"],
 };
+---
 
-const visual: BlogPostVisual = (pageData: BlogPostData) => {
-  return <div>_____________________</div>;
-};
+<div>
+  {
+    md`
+# Example Post
 
-export const post: BlogPostNoSlug = { visual, data };
+lolololol
+    `
+  }
+</div>

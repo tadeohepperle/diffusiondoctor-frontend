@@ -1,11 +1,15 @@
 ---
-import { getAllPosts } from "@utils/content";
-
-const posts = await getAllPosts();
-console.log(posts);
-// const D = posts[0].default;
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 ---
 
+<ReactMarkdown children="# hello\n - lul" remarkPlugins={[remarkGfm]} />
+<!-- {
+  ReactMarkdown({
+    children: "# hello \n - sd sdds", //"# Title \n lululul \n - list 1\n - list 3",
+    remarkPlugins: [remarkGfm],
+  })
+} -->
 <div>Hey M</div>
 
 <!-- <D /> -->
