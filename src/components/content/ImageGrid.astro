@@ -7,17 +7,46 @@ export interface Props {
   xDim?: number;
   yDim?: number;
   images: (GenImage | string)[];
+  titles?: string[];
+  autoPromptTitles?: boolean;
 }
-const { images, xDim, yDim } = Astro.props;
+let { images, xDim, titles, autoPromptTitles } = Astro.props;
+
+let xDimDetermined = xDim || Math.min(Math.max(1, images.length), 6);
+let smGridCols: string =
+  xDimDetermined < 3
+    ? xDimDetermined < 2
+      ? "grid-cols-1"
+      : "grid-cols-3"
+    : "grid-cols-2";
+let mdGridCols: string =
+  {
+    1: "md:grid-cols-1",
+    2: "md:grid-cols-2",
+    3: "md:grid-cols-3",
+    4: "md:grid-cols-4",
+    5: "md:grid-cols-5",
+    6: "md:grid-cols-6",
+  }[xDimDetermined] ?? "md:grid-cols-6";
 ---
 
-<div class="grid grid-cols-2 md:grid-cols-4 gap-1">
+<div class={`grid ${smGridCols} ${mdGridCols} gap-1`}>
   {
     images.map((image, i) => {
       if (typeof image === "string") {
         return <div>Not implemented ERROR</div>;
       } else {
-        return <SpanImage image={image} details={true} title={image.prompt} />;
+        return (
+          <SpanImage
+            image={image}
+            details={xDimDetermined < 3}
+            title={
+              (titles && titles[i]) ||
+              (autoPromptTitles && image.prompt) ||
+              undefined
+            }
+          />
+        );
       }
     })
   }

@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     extend: {
       fontSize: {
-        xs: "0.5rem",
+        xs: "0.75rem",
       },
       colors: {
         gray: colors.neutral,

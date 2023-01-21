@@ -19,8 +19,6 @@ const aspectClass = Astro.props.aspect
   : "";
 const { image, title } = Astro.props;
 
-const sizeString = `${image.width} x ${image.height}`;
-
 const details = Astro.props.details ?? true;
 const interactive = Astro.props.interactive ?? typeof image !== "string";
 
@@ -32,53 +30,56 @@ const imageUrl = typeof image !== "string" ? genImagePath(image) : image;
     <figure class="m-0">
       <div class={`relative group prose-base`}>
         <img
-          data-prompt={image.prompt}
-          data-negative_prompt={image.negative_prompt}
-          data-size={sizeString}
-          data-seed={image.seed}
-          data-steps={image.num_inference_steps}
-          data-guidance_scale={image.guidance_scale}
-          data-prompt_strength={image.prompt_strength}
-          data-sampler={image.sampler_name}
-          data-model={image.stable_diffusion_model}
+          data-image={JSON.stringify(image)}
           alt={image.prompt}
           src={imageUrl}
-          class={`m-0 w-full ${aspectClass ?? "aspect-square"} ${
-            interactive ? "cursor-pointer" : ""
-          }`}
+          loading="lazy"
+          class={`span-image-marker m-0 w-full ${
+            aspectClass ?? "aspect-square"
+          } ${interactive ? "cursor-pointer" : ""}`}
         />
-      </div>
-      {details && (
-        <div class="max-w-md absolute bottom-0 left-0 group-hover:opacity-100 opacity-0 text-xs md:text-sm ml-2 mb-2">
-          <SmallBadge label="prompt" value={image.prompt || "none"} />
+        {details && (
+          <div class="max-w-md absolute bottom-0 left-0 opacity-0 group-hover:opacity-100 hidden md:block text-xs md:text-sm ml-2 mb-2">
+            <SmallBadge label="prompt" value={image.prompt || "none"} />
 
-          {image.negative_prompt && (
-            <SmallBadge label="negative prompt" value={image.negative_prompt} />
-          )}
-          <SmallBadge label="size" value={sizeString} />
-          <SmallBadge label="seed" value={image.seed} />
-          <SmallBadge label="steps" value={image.num_inference_steps} />
-          {image.guidance_scale && (
-            <SmallBadge label="guidance scale" value={image.guidance_scale} />
-          )}
-          {image.prompt_strength && (
-            <SmallBadge label="prompt strength" value={image.prompt_strength} />
-          )}
-          {image.sampler_name && (
-            <SmallBadge label="sampler" value={image.sampler_name} />
-          )}
-          {image.stable_diffusion_model && (
-            <SmallBadge label="model" value={image.stable_diffusion_model} />
-          )}
-        </div>
-      )}
-      {details && (
-        <div class="absolute bottom-0 left-0 group-hover:hidden opacity-100 text-xs md:text-sm ml-2 mb-2">
-          <div class="rounded px-2 text-center shadow pill opacity-80 bg-white text-gray-800 dark:text-gray-200 dark:bg-black">
-            details
+            {image.negative_prompt && (
+              <SmallBadge
+                label="negative prompt"
+                value={image.negative_prompt}
+              />
+            )}
+            <SmallBadge
+              label="size"
+              value={`${image.width} x ${image.height}`}
+            />
+            <SmallBadge label="seed" value={image.seed} />
+            <SmallBadge label="steps" value={image.num_inference_steps} />
+            {image.guidance_scale && (
+              <SmallBadge label="guidance scale" value={image.guidance_scale} />
+            )}
+            {image.prompt_strength && (
+              <SmallBadge
+                label="prompt strength"
+                value={image.prompt_strength}
+              />
+            )}
+            {image.sampler_name && (
+              <SmallBadge label="sampler" value={image.sampler_name} />
+            )}
+            {image.stable_diffusion_model && (
+              <SmallBadge label="model" value={image.stable_diffusion_model} />
+            )}
           </div>
-        </div>
-      )}
+        )}
+        {details && (
+          <div class="absolute bottom-0 left-0 group-hover:hidden hidden md:block opacity-100 text-xs md:text-sm ml-2 mb-2">
+            <div class="rounded px-2 text-center shadow pill opacity-80 bg-white text-gray-800 dark:text-gray-200 dark:bg-black">
+              details
+            </div>
+          </div>
+        )}
+      </div>
+
       {title && (
         <figcaption class="mt-1 mb-2 text-center text-sm">{title}</figcaption>
       )}
@@ -87,5 +88,76 @@ const imageUrl = typeof image !== "string" ? genImagePath(image) : image;
 }
 
 <script>
-  document.querySelectorAll("");
+  import { genImagePathSR } from "@utils/utils";
+
+  function openModal(imageElement) {
+    document.body.style.overflow = "hidden";
+    const imageData = JSON.parse(imageElement.getAttribute("data-image"));
+
+    const dataAttributesConfig = [
+      ["prompt", "prompt"],
+      ["negative prompt", "negative_prompt"],
+      ["size", (i) => `${i.width} x ${i.height}`],
+      ["seed", "seed"],
+      ["steps", "num_inference_steps"],
+      ["guidance scale", "guidance_scale"],
+      ["prompt strength", "prompt_strength"],
+      ["sampler", "sampler_name"],
+      ["model", "stable_diffusion_model"],
+    ];
+
+    const modal = document.createElement("div");
+    modal.className = "modal rounded-lg  bg-white dark:bg-black";
+    modal.innerHTML = `
+    <div style="width: 100%">
+      <div style="display: block; padding-bottom: calc(${
+        ((imageData.height || 1) / (imageData.width || 1)) * 100
+      }% - 20px);" class="flex justify-center">
+      <div class="animate-pulse" style="height: 20px">Loading...</div>
+      </div>
+    </div>
+    <img class="w-full absolute top-0 left-0 rounded-tr-lg rounded-tl-lg" src=${genImagePathSR(
+      imageData
+    )}></img>
+    <div class="p-1">
+   
+    ${dataAttributesConfig
+      .map((el) => {
+        const [label, valF] = el;
+        const value =
+          typeof valF === "string" ? imageData[valF] : valF(imageData);
+        return `
+<div
+  class="mt-1 mr-2 inline-block px-2 0 text-gray-600 dark:text-gray-200 rounded">
+  <span class="label">${label}:</span>
+  ${value}
+</div>
+        `;
+      })
+      .join("\n")}
+    </div>
+    
+    `;
+
+    const modalOverlay = document.createElement("div");
+    modalOverlay.className = "modal-overlay";
+
+    modalOverlay.addEventListener("click", () => {
+      modalOverlay.remove();
+      modal.remove();
+      document.body.style.overflow = "auto";
+    });
+
+    document.body.append(modal);
+    document.body.append(modalOverlay);
+  }
+
+  let imageElements = document.querySelectorAll("img.span-image-marker");
+  for (let imageElement of imageElements) {
+    imageElement.addEventListener("click", () => {
+      console.log("click", imageElement);
+
+      openModal(imageElement);
+    });
+  }
 </script>

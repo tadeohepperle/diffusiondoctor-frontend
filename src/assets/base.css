@@ -9,7 +9,7 @@
   }
 
   .label {
-    @apply dark:text-cyan-300 text-cyan-500;
+    @apply dark:text-cyan-300 text-cyan-500 font-bold;
   }
 
   .prose-default {
@@ -21,10 +21,12 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 600px;
-  max-width: 100%;
-  height: 400px;
+  width: 660px;
+  max-width: 94%;
+  /* height: 400px; */
   max-height: 100%;
+  background: red;
+  z-index: 1010;
 }
 
 .modal-guts {
@@ -58,4 +60,15 @@
   left: 0;
   width: 100%;
   height: 100%;
+}
+
+.square {
+  width: 100%;
+  background-color: blue;
+}
+
+.square:after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
 }

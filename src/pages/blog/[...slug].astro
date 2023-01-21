@@ -109,7 +109,7 @@ const { category, author } = post.data;
     <article class="max-w-screen-md mx-auto">
       <div class={`mx-auto my-3 ${PROSE_DEFAULT}`}>
         <Visual {data} />
-        <div class="flex flex-wrap items-center w-full gap-3 md:w-auto">
+        <div class="mt-6 flex flex-wrap items-center w-full gap-3 md:w-auto">
           {
             post.data.tags.map((tag) => (
               <span class="text-sm text-gray-500">#{tag}</span>
