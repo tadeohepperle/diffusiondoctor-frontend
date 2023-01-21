@@ -1,4 +1,4 @@
-import { post } from "../../blog/__template";
+import { post } from "../../blogold/__template";
 import { Category } from "./category";
 import { Author } from "./authors";
 
@@ -27,12 +27,12 @@ export type BlogPostVisual = (data: BlogPostData) => JSX.Element;
 
 export type BlogPostNoSlug = {
   data: BlogPostDataNoSlug;
-  visual: BlogPostVisual;
+  visual: any;
 };
 
 export type BlogPost = {
   data: BlogPostData;
-  visual: BlogPostVisual;
+  visual: any;
 };
 
 export function dataWithSlug(post: BlogPostNoSlug, slug: string): BlogPostData {

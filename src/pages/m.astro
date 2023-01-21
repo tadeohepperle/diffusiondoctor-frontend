@@ -1,8 +1,11 @@
 ---
-const posts = await Astro.glob("../../blogastro/*.astro");
-console.log(posts[0]);
-const D = posts[0].default;
+import { getAllPosts } from "@utils/content";
+
+const posts = await getAllPosts();
+console.log(posts);
+// const D = posts[0].default;
 ---
 
 <div>Hey M</div>
-<D />
+
+<!-- <D /> -->

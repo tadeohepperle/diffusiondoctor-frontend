@@ -7,16 +7,20 @@ import fs from "fs";
 import path from "path";
 
 export async function getAllPosts(): Promise<BlogPost[]> {
-  const blogPostFiles = fs.readdirSync("blog");
-  let posts: BlogPost[] = [];
-  for (const fileName of blogPostFiles) {
-    const slug = path.parse(fileName).name;
-    const exports = await import(`../../blog/${slug}.tsx`);
-    const postNoSlug: BlogPostNoSlug = exports.post;
-    const post = postWithSlug(postNoSlug, slug);
-    posts.push(post);
-  }
-  return posts;
+  const blogPostFiles = await import.meta.glob("../../blog/*.astro");
+  console.log(blogPostFiles);
+  let m = await import("../../blog/blogpost.  astro");
+  console.log(m);-
+
+  // let posts: BlogPost[] = [];
+  // for (const fileName of blogPostFiles) {
+  //   const slug = path.parse(fileName).name;
+  //   const exports = await import(`../../blog/${slug}.tsx`);
+  //   const postNoSlug: BlogPostNoSlug = exports.post;
+  //   const post = postWithSlug(postNoSlug, slug);
+  //   posts.push(post);
+  // }
+  return [];
 }
 
 export const getLatestPosts = async (
