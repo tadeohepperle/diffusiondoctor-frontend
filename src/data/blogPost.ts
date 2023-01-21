@@ -1,4 +1,4 @@
-import { post } from "./../blog/__template";
+import { post } from "../../blog/__template";
 import { Category } from "./category";
 import { Author } from "./authors";
 

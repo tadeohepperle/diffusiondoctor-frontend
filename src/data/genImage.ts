@@ -1,5 +1,6 @@
 export interface Props {
   slug: string;
+  session: string;
   prompt: string;
   negative_prompt: string;
   guidance_scale: number;

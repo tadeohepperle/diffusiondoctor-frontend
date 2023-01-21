@@ -2,10 +2,14 @@
 const colors = require("tailwindcss/colors");
 const defaultTheme = require("tailwindcss/defaultTheme");
 module.exports = {
+  important: true,
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   darkMode: "class",
   theme: {
     extend: {
+      fontSize: {
+        xs: "0.5rem",
+      },
       colors: {
         gray: colors.neutral,
       },
@@ -17,6 +21,8 @@ module.exports = {
         "3/2": "3 / 2",
         "2/3": "2 / 3",
         "9/16": "9 / 16",
+        "2/1": "2 / 1",
+        "3/1": "3 / 1",
       },
     },
   },

@@ -14,6 +14,8 @@
 //   ],
 // };
 
+import ImageGrid from "@components/content/ImageGrid";
+import SpanImage from "@components/content/SpanImage";
 import { authors } from "@data/authors";
 import {
   BlogPostData,
@@ -22,7 +24,9 @@ import {
   BlogPostVisual,
 } from "@data/blogPost";
 import { categories } from "@data/category";
+import { SESSIONS } from "@data/genImage";
 import { md } from "@utils/markdown";
+import { PLACEHOLDER_IMAGE } from "@utils/utils";
 
 const data: BlogPostDataNoSlug = {
   title: "Using Stable Diffusion to generate Monsters",
@@ -41,8 +45,12 @@ const visual: BlogPostVisual = (pageData: BlogPostData) => {
       {md`
 # title 1
 
-sahsahsa
-asas
+sahsahsa.\n
+asa
+
+> I was wondering what made him so angry
+
+## Heading 2
 
 This is a list:
 
@@ -55,9 +63,17 @@ This is a list:
 
 www.google.com
       `}
+      <ImageGrid
+        images={[
+          SESSIONS.PLACEHOLDER.placeholder,
+          SESSIONS.PLACEHOLDER.placeholder,
+          SESSIONS.PLACEHOLDER.placeholder,
+          SESSIONS.PLACEHOLDER.placeholder,
+        ]}
+      />
+      <SpanImage image={PLACEHOLDER_IMAGE} />
       Hello this is blog
-      <br />
-      THis is title: {pageData.title}
+      <SpanImage image={SESSIONS.PLACEHOLDER.placeholder} />
     </div>
   );
 };

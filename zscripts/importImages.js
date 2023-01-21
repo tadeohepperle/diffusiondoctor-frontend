@@ -11,7 +11,7 @@ upscales images there using upscale.exe that should be available in systems path
 generates src/data/generated/$sessionId/$sessionId.ts data files for each session
 
 appends exports to src/data/generated/sessions.ts
-appends sessions to scripts/sessions_already_imported.txt such that they are not imported again.
+appends sessions to zscripts/sessions_already_imported.txt such that they are not imported again.
 
 
 */
@@ -20,7 +20,7 @@ const STABLE_DIFFUSION_UI_SAVE_PATH = "../generated/ui";
 const STABLE_DIFFUSION_UI_PUBLIC_PATH = "./public/images/generated/ui";
 const SESSIONS_DATA_CODE_PATH = "./src/data/generated";
 const SESSIONS_ALREADY_IMPORTED_TXT_PATH =
-  "scripts/sessions_already_imported.txt";
+  "zscripts/sessions_already_imported.txt";
 
 async function imimport() {
   const sessionsAlreadyImported = fs
@@ -60,7 +60,11 @@ async function imimport() {
       );
       const json = JSON.parse(jsonString);
       const jsonFileNameNoEnding = jsonFileName.split(".")[0];
-      const genImage = extractGenImageInfoFromJson(json, jsonFileNameNoEnding);
+      const genImage = extractGenImageInfoFromJson(
+        json,
+        jsonFileNameNoEnding,
+        sessionId
+      );
       slugsToOriginalFileNamesNoEnding[genImage.slug] = jsonFileNameNoEnding;
       allSessionsToImportDataObject[sessionId][genImage.slug] = genImage;
     }
@@ -108,6 +112,10 @@ async function imimport() {
       const fileType = allSessionsToImportDataObject[sessionId][slug].file_type;
       const imageFilePathInPublic = `${STABLE_DIFFUSION_UI_PUBLIC_PATH}/${sessionId}/${slug}.${fileType}`;
       upscaleImage(imageFilePathInPublic);
+      const upscaledImagePath =
+        imageFilePathInPublic.substring(0, imageFilePathInPublic.length - 5) +
+        "SR4.jpeg";
+      compressImage(upscaledImagePath);
     }
     // generate type file for each session:
     const sessionsDataCodePath = `${SESSIONS_DATA_CODE_PATH}/${sessionId}`;
@@ -117,8 +125,7 @@ async function imimport() {
 
     fs.writeFileSync(
       `${sessionsDataCodePath}/${sessionId}.ts`,
-      `import { Session } from "./../../genImage";
-export const __${sessionId} = ${JSON.stringify(sessionData)};`
+      `export const __${sessionId} = ${JSON.stringify(sessionData)};`
     );
 
     const allSessionsFileAppendix = `
@@ -139,7 +146,7 @@ export const ${sessionId}: typeof __${sessionId} & gen.Session = __${sessionId};
 }
 imimport();
 
-function extractGenImageInfoFromJson(json, fileNameNoEnding) {
+function extractGenImageInfoFromJson(json, fileNameNoEnding, sessionId) {
   const use_stable_diffusion_model_split =
     json.use_stable_diffusion_model.split("\\");
   let stable_diffusion_model =
@@ -158,6 +165,7 @@ function extractGenImageInfoFromJson(json, fileNameNoEnding) {
     num_inference_steps: json.num_inference_steps,
     sampler_name: json.sampler_name,
     stable_diffusion_model,
+    session: sessionId,
   };
   let slugSplit = fileNameNoEnding.split("_");
   let slug = slugSplit
@@ -197,4 +205,10 @@ function upscaleImage(image_path) {
     : image_path;
   let r = execSync(`upscale.exe ${image_path_for_processing}`);
   console.log(r.toString());
+}
+
+function compressImage(image_path) {
+  const quality = 75;
+  console.log(`   ...compressing ${image_path}`);
+  execSync(`jpegoptim ${image_path} -m ${quality}`);
 }

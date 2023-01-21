@@ -4,7 +4,7 @@ import Authorcard from "@components/authorcard.astro";
 import Container from "@components/container.astro";
 import Label from "@components/ui/label.astro";
 import Layout from "@layouts/Layout.astro";
-import { getFormattedDate } from "@utils/all";
+import { getFormattedDate, PROSE_DEFAULT } from "@utils/utils";
 import {
   BlogPost,
   BlogPostData,
@@ -105,8 +105,7 @@ const { category, author } = post.data;
 
   <Container>
     <article class="max-w-screen-md mx-auto">
-      <div
-        class="mx-auto my-3 prose prose-base dark:prose-invert prose-a:text-blue-600">
+      <div class={`mx-auto my-3 ${PROSE_DEFAULT}`}>
         <Visual {data} />
         <div class="flex flex-wrap items-center w-full gap-3 md:w-auto">
           {

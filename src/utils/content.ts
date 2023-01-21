@@ -7,11 +7,11 @@ import fs from "fs";
 import path from "path";
 
 export async function getAllPosts(): Promise<BlogPost[]> {
-  const blogPostFiles = fs.readdirSync("src/blog");
+  const blogPostFiles = fs.readdirSync("blog");
   let posts: BlogPost[] = [];
   for (const fileName of blogPostFiles) {
     const slug = path.parse(fileName).name;
-    const exports = await import(`../blog/${slug}.tsx`);
+    const exports = await import(`../../blog/${slug}.tsx`);
     const postNoSlug: BlogPostNoSlug = exports.post;
     const post = postWithSlug(postNoSlug, slug);
     posts.push(post);

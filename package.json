@@ -9,7 +9,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "imimport": "node scripts/importImages.js"
+    "imimport": "node zscripts/importImages.js"
   },
   "dependencies": {
     "@astrojs/alpinejs": "^0.1.2",
