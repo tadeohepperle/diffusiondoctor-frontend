@@ -15,7 +15,11 @@ export interface Props {
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
 
-const { title, desc, ogimage = "/opengraph.jpg" } = Astro.props;
+const {
+  title,
+  desc,
+  ogimage = "/images/misc/default_post_header_image.jpeg",
+} = Astro.props;
 
 console.log("ogimage", ogimage);
 const resolvedOGImage = checkImageUrl(ogimage, Astro.site);
