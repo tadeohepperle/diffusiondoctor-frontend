@@ -10,8 +10,8 @@ import remarkGfm from "remark-gfm";
 
 // https://astro.build/config
 export default defineConfig({
-  outDir: "./docs",
-  site: "http://localhost:3000",
+  outDir: "./dist",
+  site: "https://diffusiondoctor.com",
   integrations: [
     tailwind(),
     image({

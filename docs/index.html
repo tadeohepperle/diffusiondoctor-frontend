@@ -32,8 +32,28 @@
 
 
 
-  <link rel="stylesheet" href="/assets/about.ecb0d89a.css" />
-<link rel="stylesheet" href="/assets/about.17ddc514.css" /><script type="module" src="/hoisted.8bbadcff.js"></script></head>
+  <link rel="stylesheet" href="/assets/about.f2f92108.css" />
+<link rel="stylesheet" href="/assets/about.26d99b6d.css" /><script type="module">function r(e){return`/images/generated/ui/${e.session}/${e.slug}SR4.jpeg`}function m(e){document.body.style.overflow="hidden";const t=JSON.parse(e.getAttribute("data-image")),o=[["prompt","prompt"],["negative prompt","negative_prompt"],["size",d=>`${d.width} x ${d.height}`],["seed","seed"],["steps","num_inference_steps"],["guidance scale","guidance_scale"],["prompt strength","prompt_strength"],["sampler","sampler_name"],["model","stable_diffusion_model"]],a=document.createElement("div");a.className="modal rounded-lg  bg-white dark:bg-black",a.innerHTML=`
+    <div style="width: 100%">
+      <div style="display: block; padding-bottom: calc(${(t.height||1)/(t.width||1)*100}% - 20px);" class="flex justify-center">
+      <div class="animate-pulse" style="height: 20px">Loading...</div>
+      </div>
+    </div>
+    <img class="w-full absolute top-0 left-0 rounded-tr-lg rounded-tl-lg" src=${r(t)}></img>
+    <div class="p-1">
+    
+    ${o.map(d=>{const[s,n]=d,i=typeof n=="string"?t[n]:n(t);return`
+<div
+  class="mt-1 mr-2 inline-block px-2 0 text-gray-600 dark:text-gray-200 rounded">
+  <span class="label">${s}:</span>
+  ${i}
+</div>
+        `}).join(`
+`)}
+    </div>
+    
+    `;const l=document.createElement("div");l.className="modal-overlay",l.addEventListener("click",()=>{l.remove(),a.remove(),document.body.style.overflow="auto"}),document.body.append(a),document.body.append(l)}let c=document.querySelectorAll("img.span-image-marker");for(let e of c)e.getAttribute("data-image")&&e.addEventListener("click",()=>{console.log("click",e),m(e)});
+</script></head>
   <body>
     <div class="container px-4 pt-3 pb-3 lg:py-8 mx-auto xl:px-5 max-w-screen-lg">
   <nav>
@@ -99,6 +119,47 @@
       <div class="grid gap-10 lg:gap-10 md:grid-cols-2">
         <div class="cursor-pointer group">
   <div class="relative overflow-hidden transition-all bg-gray-100 rounded-md dark:bg-gray-800   hover:scale-105 aspect-video">
+    <a href="/blog/using-stable-diffusion-to-generate-rpg-items-1">
+      <picture>
+	<source type="image/avif" srcset="/assets/thumbnailitems1_Z28yzdq.avif 200w,/assets/thumbnailitems1_2mSdY3.avif 400w,/assets/thumbnailitems1_1eoxVj.avif 800w" sizes="(max-width: 640px) 90vw, 480px"><source type="image/webp" srcset="/assets/thumbnailitems1_2vNL5W.webp 200w,/assets/thumbnailitems1_1W4qtu.webp 400w,/assets/thumbnailitems1_NzKqK.webp 800w" sizes="(max-width: 640px) 90vw, 480px"><source type="image/jpeg" srcset="/assets/thumbnailitems1_2cQDrv.jpg 200w,/assets/thumbnailitems1_1D7iP3.jpg 400w,/assets/thumbnailitems1_uCCMj.jpg 800w" sizes="(max-width: 640px) 90vw, 480px">
+	<img src="/assets/thumbnailitems1_uCCMj.jpg" loading="eager" decoding="async" alt="Thumbnail" class="w-full h-full rounded-md">
+</picture>
+    </a>
+  </div>
+
+  <a href="#">
+    <span class="inline-block text-xs font-medium tracking-wider uppercase  text-emerald-300">
+  Challenge
+</span>
+  </a>
+  <h2 class="mt-2 text-lg font-semibold tracking-normal text-brand-primary dark:text-white">
+    <a href="/blog/using-stable-diffusion-to-generate-rpg-items-1">
+      <span class="bg-gradient-to-r from-green-200 to-green-100 dark:from-purple-800 dark:to-purple-900 bg-[length:0px_10px] bg-left-bottom bg-no-repeat transition-[background-size] duration-500 hover:bg-[length:100%_3px] group-hover:bg-[length:100%_10px]">
+        Using Stable Diffusion to generate items for RPG-style games (I)
+      </span>
+    </a>
+  </h2>
+
+  <div class="hidden">
+    <p class="mt-2 text-sm text-gray-500 dark:text-gray-400 line-clamp-3">
+          <a href="/blog/using-stable-diffusion-to-generate-rpg-items-1">Can we use Stable Diffusion Models to generate original pixelart items that could be useful for Minecraft texture packs?</a>
+        </p>
+  </div>
+
+  <div class="flex items-center mt-3 space-x-3 text-gray-500 dark:text-gray-400">
+    <div class="flex items-center gap-3">
+      <div class="relative flex-shrink-0 w-5 h-5">
+        <img alt="Author Photo" class="rounded-full" width="40" height="40" src="/assets/tadeo_hp_lq_Z2oGlQT.jpg" loading="lazy" decoding="async">
+      </div>
+      <span class="text-sm">Tadeo Hepperle</span>
+    </div>
+    <span class="text-xs text-gray-300 dark:text-gray-600"> &bull;</span>
+    <time class="text-sm" datetime="2023-01-22">
+      Jan 22, 2023
+    </time>
+  </div>
+</div><div class="cursor-pointer group">
+  <div class="relative overflow-hidden transition-all bg-gray-100 rounded-md dark:bg-gray-800   hover:scale-105 aspect-video">
     <a href="/blog/ai-generated-polititians">
       <picture>
 	<source type="image/avif" srcset="/assets/close_up_portrait_of_Wladimir_Putin_reeds_b_8008868_512x512_s50_g217_p08_sd_v1_4_655770202SR4_Z1gV0BF.avif 200w,/assets/close_up_portrait_of_Wladimir_Putin_reeds_b_8008868_512x512_s50_g217_p08_sd_v1_4_655770202SR4_Z1PFle8.avif 400w,/assets/close_up_portrait_of_Wladimir_Putin_reeds_b_8008868_512x512_s50_g217_p08_sd_v1_4_655770202SR4_2627x4.avif 800w" sizes="(max-width: 640px) 90vw, 480px"><source type="image/webp" srcset="/assets/close_up_portrait_of_Wladimir_Putin_reeds_b_8008868_512x512_s50_g217_p08_sd_v1_4_655770202SR4_Z1GJN7e.webp 200w,/assets/close_up_portrait_of_Wladimir_Putin_reeds_b_8008868_512x512_s50_g217_p08_sd_v1_4_655770202SR4_Z2gu8IG.webp 400w,/assets/close_up_portrait_of_Wladimir_Putin_reeds_b_8008868_512x512_s50_g217_p08_sd_v1_4_655770202SR4_1Fdk2v.webp 800w" sizes="(max-width: 640px) 90vw, 480px"><source type="image/jpeg" srcset="/assets/close_up_portrait_of_Wladimir_Putin_reeds_b_8008868_512x512_s50_g217_p08_sd_v1_4_655770202SR4_ZwrUqd.jpeg 200w,/assets/close_up_portrait_of_Wladimir_Putin_reeds_b_8008868_512x512_s50_g217_p08_sd_v1_4_655770202SR4_Z16cg2F.jpeg 400w,/assets/close_up_portrait_of_Wladimir_Putin_reeds_b_8008868_512x512_s50_g217_p08_sd_v1_4_655770202SR4_Z2eFV5p.jpeg 800w" sizes="(max-width: 640px) 90vw, 480px">
@@ -122,7 +183,7 @@
 
   <div class="hidden">
     <p class="mt-2 text-sm text-gray-500 dark:text-gray-400 line-clamp-3">
-          <a href="/blog/ai-generated-polititians">________</a>
+          <a href="/blog/ai-generated-polititians">We generated 20 portraits of famous polititians and dictators using a Stable Diffusion Model. Some may be bad, but can you recognize them?</a>
         </p>
   </div>
 

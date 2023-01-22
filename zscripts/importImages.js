@@ -1,5 +1,7 @@
 import fs from "fs";
 import { execSync } from "child_process";
+// imports only generated images!!! For misc images type generation see importMisc.js
+
 /*
 
 expects PROJECTROOT/../curated/ui/ to have subfolders like "12312323212" that in turn contain pairs of images (jpeg or png) and json files with same file name.
@@ -216,7 +218,7 @@ function upscaleImage(image_path) {
 }
 
 function compressImage(image_path) {
-  const quality = 75;
+  const quality = 85;
   console.log(`   ...compressing ${image_path}`);
   execSync(`jpegoptim ${image_path} -m ${quality}`);
 }

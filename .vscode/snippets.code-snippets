@@ -1,0 +1,25 @@
+{
+  "Markdown Template String Interruption": {
+    "prefix": "mdi",
+    "body": ["`}\n ${1:AstroComponents} \n{md`"],
+    "description": "Markdown Template String Interruption"
+  },
+
+  "Markdown Template String Interruption with image span": {
+    "prefix": "mdimspan",
+    "body": ["`}\n  <SpanImage image={SESSIONS.${1}} title={'${2}'}/> \n{md`"],
+    "description": "Markdown Template String Interruption with image span"
+  },
+
+  "Markdown Template String Interruption with image grid": {
+    "prefix": "mdimgrid",
+    "body": ["`}\n  <ImageGrid images={[SESSIONS.${1}]}/> \n{md`"],
+    "description": "Markdown Template String Interruption with image grid"
+  },
+
+  "Markdown Template String": {
+    "prefix": "mdt",
+    "body": ["{md`\n${1}\n`}"],
+    "description": "Markdown Template String"
+  }
+}

@@ -32,8 +32,28 @@
 
 
 
-  <link rel="stylesheet" href="/assets/about.ecb0d89a.css" />
-<link rel="stylesheet" href="/assets/about.17ddc514.css" /></head>
+  <link rel="stylesheet" href="/assets/about.f2f92108.css" />
+<link rel="stylesheet" href="/assets/about.26d99b6d.css" /><script type="module">function r(e){return`/images/generated/ui/${e.session}/${e.slug}SR4.jpeg`}function m(e){document.body.style.overflow="hidden";const t=JSON.parse(e.getAttribute("data-image")),o=[["prompt","prompt"],["negative prompt","negative_prompt"],["size",d=>`${d.width} x ${d.height}`],["seed","seed"],["steps","num_inference_steps"],["guidance scale","guidance_scale"],["prompt strength","prompt_strength"],["sampler","sampler_name"],["model","stable_diffusion_model"]],a=document.createElement("div");a.className="modal rounded-lg  bg-white dark:bg-black",a.innerHTML=`
+    <div style="width: 100%">
+      <div style="display: block; padding-bottom: calc(${(t.height||1)/(t.width||1)*100}% - 20px);" class="flex justify-center">
+      <div class="animate-pulse" style="height: 20px">Loading...</div>
+      </div>
+    </div>
+    <img class="w-full absolute top-0 left-0 rounded-tr-lg rounded-tl-lg" src=${r(t)}></img>
+    <div class="p-1">
+    
+    ${o.map(d=>{const[s,n]=d,i=typeof n=="string"?t[n]:n(t);return`
+<div
+  class="mt-1 mr-2 inline-block px-2 0 text-gray-600 dark:text-gray-200 rounded">
+  <span class="label">${s}:</span>
+  ${i}
+</div>
+        `}).join(`
+`)}
+    </div>
+    
+    `;const l=document.createElement("div");l.className="modal-overlay",l.addEventListener("click",()=>{l.remove(),a.remove(),document.body.style.overflow="auto"}),document.body.append(a),document.body.append(l)}let c=document.querySelectorAll("img.span-image-marker");for(let e of c)e.getAttribute("data-image")&&e.addEventListener("click",()=>{console.log("click",e),m(e)});
+</script></head>
   <body>
     <div class="container px-4 pt-3 pb-3 lg:py-8 mx-auto xl:px-5 max-w-screen-lg">
   <nav>
@@ -99,12 +119,32 @@
   <h1 class="text-3xl font-semibold tracking-tight text-center lg:leading-snug text-brand-primary lg:text-4xl dark:text-white">
     About Diffusion Doctor
   </h1>
-  <p class="text-lg mt-3 text-gray-600">
+  <p class="text-lg mt-3 text-gray-600 dark:text-gray-300">
     
-        The blog about Stable Diffusion image generation
+        Welcome to Diffusion Doctor, a blog dedicated to showcasing the latest
+        and greatest in AI-generated images. Our focus is on stable diffusion
+        models, which allow for the creation of high-quality images with a wide
+        range of applications.
       
   </p>
-</div><div class="flex items-center justify-center mt-6">
+</div><figure class="my-5">
+  <div class="relative group prose-base">
+    <img src="/images/misc/default_post_header_image.jpeg" style="aspect-ratio: 3 / 1;" alt="" loading="lazy" class="object-cover span-image-marker m-0 w-full ">
+    
+    
+  </div>
+
+  
+</figure>
+
+<p class="text-center text-lg mt-3 text-gray-600 dark:text-gray-300">
+      From art and design to scientific visualization, we explore the
+      possibilities and limitations of this cutting-edge technology. Check in
+      every week for new articles and exciting examples of AI-generated images.
+      <br>
+      It is not our goal to only show the most shiny results, but also failed attempts
+      and learnings from the process.
+    </p><div class="flex items-center justify-center mt-6">
       <div class="group">
         <div class="w-50 aspect-square">
           <img alt="Tadeo Hepperle" class="w-full h-full object-cover rounded transition group-hover:-translate-y-1 group-hover:shadow-xl" width="200" height="200" src="/assets/tadeo_hp_lq_Z1nPpja.avif" loading="lazy" decoding="async">
@@ -112,13 +152,14 @@
 
         <div class="mt-4 text-center">
           <h3 class="text-sm text-gray-500">
-            Tadeo Hepperle<br>author and developer
+            Tadeo Hepperle<br>Yep that's me.
           </h3>
         </div>
       </div>
-    </div><div class="mx-auto max-w-xl text-center mt-14">
+    </div><div class="mx-auto max-w-xl text-center mt-4">
       <p class="text-lg leading-relaxed text-gray-600 dark:text-gray-300">
-        This is a blog about Stable Diffusion.
+        Feel free to reach out to me, if you generate images yourself and want
+        to showcase some on our blog. We want to give more exposure to AI art.
       </p>
       <div class="mt-8">
         <a href="/contact" class="rounded text-center transition focus-visible:ring-2 ring-offset-2 ring-gray-200 px-5 py-2.5 bg-black text-white dark:bg-white dark:text-black hover:bg-gray-800 border-2 border-transparent">Get in touch

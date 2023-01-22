@@ -1,0 +1,399 @@
+---
+import ImageGrid from "@components/content/ImageGrid.astro";
+import SpanImage from "@components/content/SpanImage.astro";
+import { authors } from "@data/authors";
+import { BlogPostDataNoSlug } from "@data/blogPost";
+import { categories } from "@data/category";
+import { MISC } from "@data/generated/misc";
+import { SESSIONS } from "@data/genImage";
+import { md } from "@utils/markdown";
+
+export const draft = false;
+
+export const data: BlogPostDataNoSlug = {
+  title: "Using Stable Diffusion to generate items for RPG-style games (I)",
+  excerpt:
+    "Can we use Stable Diffusion Models to generate original pixelart items that could be useful for Minecraft texture packs?",
+  publishDate: "2023-01-22",
+  image: MISC.blogposts.thumbnails.thumbnailitems1_jpg,
+  category: categories.challenge,
+  author: authors.tadeoHepperle,
+  tags: ["rpg", "game sprites", "game development"],
+};
+---
+
+<div>
+  {
+    md`
+## What kind of items do we want?
+
+Let's define a list of 5 items that we want to make sprites for with Stable Diffusion.
+These 5 random items could be used in an RPG video game:
+
+- golden goblet
+- teddy bear
+- straw hat
+- magic scroll
+- shuriken (ninja throwing stars)
+
+Our goal is now, to create these items in a style that is suitable for Game Sprites, which has a few requirements:
+
+- look good as small images
+- have a plain background that can be easily replaced
+- have a consistent style
+
+### Starting with simple prompts
+
+First we generate images with the just name of each item as a prompt for 512x512 images, using 25 steps, a guidance scale of 25/50 and 4 variations per item. So the prompts simply are: \`golden goblet\`, \`teddy bear\`, \`straw hat\`, \`magic scroll\` and \`shuriken\`.
+
+#### Golden goblets
+    `
+  }
+  <ImageGrid
+    images={[
+      SESSIONS.itemgen1
+        .golden_goblet_1749686_512x512_s25_g25_p08_sd_v1_4_1398936309,
+      SESSIONS.itemgen1
+        .golden_goblet_4458799_512x512_s25_g25_p08_sd_v1_4_1398936309,
+      SESSIONS.itemgen1
+        .golden_goblet_7702433_512x512_s25_g25_p08_sd_v1_4_1398936309,
+      SESSIONS.itemgen1
+        .golden_goblet_3963713_512x512_s25_g25_p08_sd_v1_4_1398936309,
+    ]}
+  />
+  {
+    md`
+I think the 3rd and 4th Picture most closely match what we want. Also the background is not too bad.
+
+#### Teddy bears
+    `
+  }
+  <ImageGrid
+    images={[
+      SESSIONS.itemgen1
+        .teddy_bear_2254988_512x512_s25_g25_p08_sd_v1_4_1398936309,
+      SESSIONS.itemgen1
+        .teddy_bear_4492937_512x512_s25_g25_p08_sd_v1_4_1398936309,
+      SESSIONS.itemgen1
+        .teddy_bear_5976475_512x512_s25_g25_p08_sd_v1_4_1398936309,
+      SESSIONS.itemgen1
+        .teddy_bear_6818031_512x512_s25_g25_p08_sd_v1_4_1398936309,
+    ]}
+  />
+  {
+    md`
+All teddy bears look pretty bad, depending on the style of the game maybe the 3rd bear would be usable, if the feet were not cut off.
+
+#### Straw hats
+    `
+  }
+  <ImageGrid
+    images={[
+      SESSIONS.itemgen1
+        .straw_hat_2052034_512x512_s25_g25_p08_sd_v1_4_1398936309,
+      SESSIONS.itemgen1.straw_hat_986219_512x512_s25_g25_p08_sd_v1_4_1398936309,
+      SESSIONS.itemgen1
+        .straw_hat_7594188_512x512_s25_g25_p08_sd_v1_4_1398936309,
+      SESSIONS.itemgen1
+        .straw_hat_1577130_512x512_s25_g25_p08_sd_v1_4_1398936309,
+    ]}
+  />
+  {
+    md`
+Interstingly the second image also has an easily removable green background, just like one of the bear images.
+
+#### Magic scrolls
+    `
+  }
+  <ImageGrid
+    images={[
+      SESSIONS.itemgen1
+        .magic_scroll_1597563_512x512_s25_g25_p08_sd_v1_4_1398936309,
+      SESSIONS.itemgen1
+        .magic_scroll_2070772_512x512_s25_g25_p08_sd_v1_4_1398936309,
+      SESSIONS.itemgen1
+        .magic_scroll_7065630_512x512_s25_g25_p08_sd_v1_4_1398936309,
+      SESSIONS.itemgen1
+        .magic_scroll_7542491_512x512_s25_g25_p08_sd_v1_4_1398936309,
+    ]}
+  />
+  {
+    md`
+It seems like that the model does not really give us a magic scroll as a paper scroll like I wished too, so we need to do more descriptive prompt engineering here.
+
+#### Shuriken (ninja throwing stars)
+    `
+  }
+  <ImageGrid
+    images={[
+      SESSIONS.itemgen1.shuriken_6182790_512x512_s25_g25_p08_sd_v1_4_1398936309,
+      SESSIONS.itemgen1.shuriken_6727066_512x512_s25_g25_p08_sd_v1_4_1398936309,
+      SESSIONS.itemgen1.shuriken_7409088_512x512_s25_g25_p08_sd_v1_4_1398936309,
+      SESSIONS.itemgen1.shuriken_9050201_512x512_s25_g25_p08_sd_v1_4_1398936309,
+    ]}
+  />
+  {
+    md`
+All of these seem more like logos / symbols than actual objects. But at least the star shape is there.
+
+### Using additional words in the prompt
+
+Let's try to refine the prompts to include more keywords about the style we want. I chose this pattern: \`((golden goblet)), item, object, shiny, rpg item, dnd style, realistic, ink, bloom, white background, clear background, by Ted Nasmith\`. Ted Nasmith is an artist whose style I usually like.
+
+#### Golden goblets
+    `
+  }
+  <ImageGrid
+    images={[
+      SESSIONS.itemgen1
+        .golden_goblet_item_object_shiny_rpg_item_4864499_512x512_s25_g30_p08_sd_v1_4_1860532715,
+      SESSIONS.itemgen1
+        .golden_goblet_item_object_shiny_rpg_item_8011565_512x512_s25_g30_p08_sd_v1_4_1860532715,
+      SESSIONS.itemgen1
+        .golden_goblet_item_object_shiny_rpg_item_8119114_512x512_s25_g30_p08_sd_v1_4_1860532715,
+      SESSIONS.itemgen1
+        .golden_goblet_item_object_shiny_rpg_item_8907053_512x512_s25_g30_p08_sd_v1_4_1860532715,
+    ]}
+  />
+  {
+    md`
+These are more on the abstract side and pretty much unusable.
+
+#### Teddy bears
+    `
+  }
+  <ImageGrid
+    images={[
+      SESSIONS.itemgen1
+        .teddy_bear_item_object_rpg_item_dnd_style_5697301_512x512_s25_g30_p08_sd_v1_4_1860532715,
+      SESSIONS.itemgen1
+        .teddy_bear_item_object_rpg_item_dnd_style_4990582_512x512_s25_g30_p08_sd_v1_4_1860532715,
+      SESSIONS.itemgen1
+        .teddy_bear_item_object_rpg_item_dnd_style_7545411_512x512_s25_g30_p08_sd_v1_4_1860532715,
+      SESSIONS.itemgen1
+        .teddy_bear_item_object_rpg_item_dnd_style_7250396_512x512_s25_g30_p08_sd_v1_4_1860532715,
+    ]}
+  />
+  {
+    md`
+the first bear looks like he was electrified by Darth Sidious, look into his eyes! At least the background is kinda clear now, which is good. I don't even know what the 3rd bear is supposed to be, it looks very abstract, maybe I should add abstract to the negative prompts.
+
+#### Straw hats
+    `
+  }
+  <ImageGrid
+    images={[
+      SESSIONS.itemgen1
+        .straw_hat_item_object_rpg_item_dnd_style_3537455_512x512_s25_g30_p08_sd_v1_4_116927865,
+      SESSIONS.itemgen1
+        .straw_hat_item_object_rpg_item_dnd_style_239028_512x512_s25_g30_p08_sd_v1_4_116927865,
+
+      SESSIONS.itemgen1
+        .straw_hat_item_object_rpg_item_dnd_style_5834591_512x512_s25_g30_p08_sd_v1_4_116927865,
+
+      SESSIONS.itemgen1
+        .straw_hat_item_object_rpg_item_dnd_style_7562579_512x512_s25_g30_p08_sd_v1_4_116927865,
+    ]}
+  />
+  {
+    md`
+Most hats seem to be out of frame which sucks.
+
+#### Magic scrolls
+    `
+  }
+  <ImageGrid
+    images={[
+      SESSIONS.itemgen1
+        .magic_scroll_pergament_roll_paper_paper_scro_1625646_512x512_s25_g30_p08_sd_v1_4_116927865,
+      SESSIONS.itemgen1
+        .magic_scroll_pergament_roll_paper_paper_scro_347572_512x512_s25_g30_p08_sd_v1_4_116927865,
+
+      SESSIONS.itemgen1
+        .magic_scroll_pergament_roll_paper_paper_scro_8251353_512x512_s25_g30_p08_sd_v1_4_116927865,
+
+      SESSIONS.itemgen1
+        .magic_scroll_pergament_roll_paper_paper_scro_4151374_512x512_s25_g30_p08_sd_v1_4_116927865,
+    ]}
+  />
+  {
+    md`
+Ha, now we get paper scrolls, but what is the 3rd image? It legit looks like that's some magic toilet paper. Not so epic.
+
+#### Shuriken (ninja throwing stars)
+    `
+  }
+  <ImageGrid
+    images={[
+      SESSIONS.itemgen1
+        .shuriken_weapon_ninja_throwing_star_shiny_5530889_512x512_s25_g30_p08_sd_v1_4_1860532715,
+      SESSIONS.itemgen1
+        .shuriken_weapon_ninja_throwing_star_shiny_6287013_512x512_s25_g30_p08_sd_v1_4_1860532715,
+
+      SESSIONS.itemgen1
+        .shuriken_weapon_ninja_throwing_star_shiny_360104_512x512_s25_g30_p08_sd_v1_4_1860532715,
+
+      SESSIONS.itemgen1
+        .shuriken_weapon_ninja_throwing_star_shiny_1141866_512x512_s25_g30_p08_sd_v1_4_1860532715,
+    ]}
+  />
+  {
+    md`
+Sadly still no real object, all look a bit abstract.
+The 3rd picture looks kinda interesting, it could be a logo for an anarchist organisation or something. The 2nd picture is clearly more a compass than a shuriken star.
+
+### Using a simple drawn input image of the item
+
+Now we use simple drawn images as an initial input, to make the generation process for stable diffusion a bit easier. Here are the input images I used for the 5 items, each consists only of two colors on the background and was drawn in less than 30 seconds:
+    `
+  }
+  <ImageGrid
+    images={[
+      MISC.blogposts.handdrawings.inputgoblet_png,
+      MISC.blogposts.handdrawings.inputbear_png,
+      MISC.blogposts.handdrawings.inputhat_png,
+      MISC.blogposts.handdrawings.inputscroll_png,
+      MISC.blogposts.handdrawings.inputshuriken_png,
+    ]}
+  />
+  {
+    md`
+#### Golden goblets
+    `
+  }
+  <ImageGrid
+    images={[
+      SESSIONS.itemgen1
+        .golden_goblet_item_object_rpg_item_dnd_sty_2438944_512x512_s25_g30_p077_sd_v1_4_652174760,
+      SESSIONS.itemgen1
+        .golden_goblet_item_object_rpg_item_dnd_sty_2583694_512x512_s25_g30_p077_sd_v1_4_652174760,
+      SESSIONS.itemgen1
+        .golden_goblet_item_object_rpg_item_dnd_sty_4651695_512x512_s25_g30_p077_sd_v1_4_652174760,
+      SESSIONS.itemgen1
+        .golden_goblet_item_object_rpg_item_dnd_sty_8746696_512x512_s25_g30_p077_sd_v1_4_652174760,
+    ]}
+  />
+  {
+    md`
+The 1st and the 4st goblet look pretty decent. I especially like the style of the 4th goblet, that looks a bit like a mix of paper drawing and actual metal with the reflextions.
+
+#### Teddy bears
+    `
+  }
+  <ImageGrid
+    images={[
+      SESSIONS.itemgen1
+        .teddy_bear_item_object_rpg_item_dnd_style_3248740_512x512_s25_g30_p077_sd_v1_4_652174760,
+      SESSIONS.itemgen1
+        .teddy_bear_item_object_rpg_item_dnd_style_956168_512x512_s25_g30_p077_sd_v1_4_652174760,
+      SESSIONS.itemgen1
+        .teddy_bear_item_object_rpg_item_dnd_style_3446850_512x512_s25_g30_p077_sd_v1_4_652174760,
+      SESSIONS.itemgen1
+        .teddy_bear_item_object_rpg_item_dnd_style_6172193_512x512_s25_g30_p077_sd_v1_4_652174760,
+    ]}
+  />
+  {
+    md`
+They all look a bit abstract and cartoonish to me. I want to add \`((cartoon)), plain colors, flat\` to the negative prompt and \`fur, fluffy, happy\` to the prompt to make them seem more sophisticated:
+    `
+  }
+  <ImageGrid
+    images={[
+      SESSIONS.itemgen1
+        .teddy_bear_fur_fluffy_happy_item_object_3248740_512x512_s25_g30_p077_sd_v1_4_538367652,
+      SESSIONS.itemgen1
+        .teddy_bear_fur_fluffy_happy_item_object_956168_512x512_s25_g30_p077_sd_v1_4_538367652,
+      SESSIONS.itemgen1
+        .teddy_bear_fur_fluffy_happy_item_object_3446850_512x512_s25_g30_p077_sd_v1_4_538367652,
+      SESSIONS.itemgen1
+        .teddy_bear_fur_fluffy_happy_item_object_6172193_512x512_s25_g30_p077_sd_v1_4_538367652,
+    ]}
+  />
+  {
+    md`
+Well that did not work too well. They still look cartoonish and not like good sprites for most games.
+
+#### Straw hats
+    `
+  }
+  <ImageGrid
+    images={[
+      SESSIONS.itemgen1
+        .straw_hat_item_object_rpg_item_dnd_style_5419930_512x512_s25_g30_p077_sd_v1_4_652174760,
+      SESSIONS.itemgen1
+        .straw_hat_item_object_rpg_item_dnd_style_3772747_512x512_s25_g30_p077_sd_v1_4_652174760,
+      SESSIONS.itemgen1
+        .straw_hat_item_object_rpg_item_dnd_style_6651318_512x512_s25_g30_p077_sd_v1_4_652174760,
+      SESSIONS.itemgen1
+        .straw_hat_item_object_rpg_item_dnd_style_5727322_512x512_s25_g30_p077_sd_v1_4_652174760,
+    ]}
+  />
+  {
+    md`
+The 4th hat looks extremely cool and perfect for an RPG-like game.
+The 1st hat looks almost like a low-poly 3d style.
+
+#### Magic scrolls
+    `
+  }
+  <ImageGrid
+    images={[
+      SESSIONS.itemgen1
+        .magic_scroll_pergament_paper_paper_scroll_i_9048290_512x512_s25_g30_p077_sd_v1_4_652174760,
+      SESSIONS.itemgen1
+        .magic_scroll_pergament_paper_paper_scroll_i_6750261_512x512_s25_g30_p077_sd_v1_4_652174760,
+      SESSIONS.itemgen1
+        .magic_scroll_pergament_paper_paper_scroll_i_219082_512x512_s25_g30_p077_sd_v1_4_652174760,
+      SESSIONS.itemgen1
+        .magic_scroll_pergament_paper_paper_scroll_i_1417983_512x512_s25_g30_p077_sd_v1_4_652174760,
+    ]}
+  />
+  {
+    md`
+Now these are really some magic scrolls. For some game styles they might even have too much detail.
+I especially like the 3rd and 4th picture which look very nice with the golden ornaments. However there is a weird reflection in the top of the 3rd picture.
+
+#### Shuriken (ninja throwing stars)
+    `
+  }
+  <ImageGrid
+    images={[
+      SESSIONS.itemgen1
+        .Shuriken_ninja_throwing_stars_pergament_paper_1276398_512x512_s25_g30_p077_sd_v1_4_652174760,
+      SESSIONS.itemgen1
+        .Shuriken_ninja_throwing_stars_pergament_paper_5778331_512x512_s25_g30_p077_sd_v1_4_652174760,
+      SESSIONS.itemgen1
+        .Shuriken_ninja_throwing_stars_pergament_paper_6092261_512x512_s25_g30_p077_sd_v1_4_652174760,
+      SESSIONS.itemgen1
+        .Shuriken_ninja_throwing_stars_pergament_paper_5153154_512x512_s25_g30_p077_sd_v1_4_652174760,
+    ]}
+  />
+  {
+    md`
+I accidentally left "paper scroll" in the prompt from making the magic scrolls. That is why they came out like origami stars. Let's make them again without this mistake:
+    `
+  }
+  <ImageGrid
+    images={[
+      SESSIONS.itemgen1
+        .Shuriken_ninja_throwing_stars_weapon_item_o_5892334_512x512_s25_g30_p077_sd_v1_4_652174760,
+      SESSIONS.itemgen1
+        .Shuriken_ninja_throwing_stars_weapon_item_o_5186466_512x512_s25_g30_p077_sd_v1_4_652174760,
+      SESSIONS.itemgen1
+        .Shuriken_ninja_throwing_stars_weapon_item_o_729897_512x512_s25_g30_p077_sd_v1_4_652174760,
+      SESSIONS.itemgen1
+        .Shuriken_ninja_throwing_stars_weapon_item_o_7911006_512x512_s25_g30_p077_sd_v1_4_652174760,
+    ]}
+  />
+  {
+    md`
+The 4th ninja star is pretty amazing, the others have some minor artefacts that make them weird.
+
+## Learnings: is Stable Diffusion usable to make RPG items?
+
+Yes, with some initial input und prompt tweaking it is definitely possible to generate high quality item sprites for RPG-like games with Stable Diffusion. It is cheap and effective, especially when you already have the general shape in mind and just need to convert your ugly sketches into high quality images.
+\n
+We will explore more item generation for game makers in future articles.
+    `
+  }
+</div>
