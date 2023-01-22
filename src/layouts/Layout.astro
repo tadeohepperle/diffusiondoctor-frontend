@@ -17,7 +17,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
 
 const { title, desc, ogimage = "/opengraph.jpg" } = Astro.props;
 
+console.log("ogimage", ogimage);
 const resolvedOGImage = checkImageUrl(ogimage, Astro.site);
+console.log("resolvedOGImage", resolvedOGImage);
 
 const makeTitle = title ? title + " | Diffusion Doctor" : SEO_CONSTANTS.title;
 ---

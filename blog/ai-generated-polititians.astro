@@ -1,0 +1,255 @@
+---
+import SpanImageWrap from "@components/content/SpanImageWrap.astro";
+import { authors } from "@data/authors";
+import { BlogPostDataNoSlug } from "@data/blogPost";
+import { categories } from "@data/category";
+import { SESSIONS } from "@data/genImage";
+import { md } from "@utils/markdown";
+import { genImagePath, genImagePathSR, PLACEHOLDER_IMAGE } from "@utils/utils";
+
+export const data: BlogPostDataNoSlug = {
+  title: "Can you recognize these 20 AI-generated portraits of polititians?",
+  excerpt: "________",
+  publishDate: "2023-01-18",
+  image: genImagePathSR(
+    SESSIONS.polititians
+      .close_up_portrait_of_Wladimir_Putin_reeds_b_8008868_512x512_s50_g217_p08_sd_v1_4_655770202
+  ),
+  imagelq: genImagePath(
+    SESSIONS.polititians
+      .close_up_portrait_of_Viktor_Orb_n_reeds_bac_5288610_512x512_s50_g217_p08_sd_v1_4_655770202
+  ),
+  category: categories.objectStudies,
+  author: authors.tadeoHepperle,
+  tags: ["_____"],
+};
+---
+
+<div>
+  {
+    md`
+We used Stable Diffusssion models to generate Images of famous polititians. We tried all kinds of prompts and parameters until we came up with the portrait of Viktor Orbán (dictator of some country in Eastern Europe, see below). We then took this image as an imput and changed the polititians name in the prompt to generate the following portraits.
+
+## **Erdoğan**
+    `
+  }
+  <SpanImageWrap
+    image={SESSIONS.polititians
+      .close_up_portrait_of_erdogan_reeds_backligh_8753834_512x512_s75_g20_p078_sd_v1_4_335702722}
+  />
+  {
+    md`
+Recep Tayyip Erdoğan is a Turkish politician who has been the President of Turkey since 2014. He previously served as Prime Minister of Turkey from 2003 to 2014 and as Mayor of Istanbul from 1994 to 1998. He is the founder and chairman of the Justice and Development Party, even though some may argue it does not bring much Justice, especially to journalists in the country.
+
+## **Ho Chi Minh**
+    `
+  }
+  <SpanImageWrap
+    image={SESSIONS.polititians
+      .close_up_portrait_of_Ho_Chi_Minh_reeds_back_8753834_512x512_s50_g20_p078_sd_v1_4_335702722}
+  />
+  {
+    md`
+Hồ Chí Minh was a Vietnamese Communist revolutionary leader who was Prime Minister and President of Vietnam. He was a key figure in the foundation of the Democratic Republic of Vietnam in 1945, as well as the People's Army of Vietnam and the Việt Cộng during the Vietnam War.
+
+## **Adolf Hitler**
+    `
+  }
+  <SpanImageWrap
+    image={SESSIONS.polititians
+      .close_up_portrait_of_Adolf_Hitler_reeds_bac_8753834_512x512_s75_g20_p078_sd_v1_4_335702722}
+  />
+  {
+    md`
+Adolf Hitler was a German politician and leader of the Nazi Party. He rose to power as Chancellor of Germany in 1933 and later Führer in 1934. During his dictatorship from 1933 to 1945, he initiated World War II in Europe by invading Poland in September 1939.
+
+## **Angela Merkel**
+    `
+  }
+  <SpanImageWrap
+    image={SESSIONS.polititians
+      .close_up_portrait_of_Angela_Merkel_reeds_ba_8753833_512x512_s50_g20_p078_sd_v1_4_335702722}
+  />
+  {
+    md`
+Angela Merkel is a German politician who has been Chancellor of Germany since 2005. She is the leader of the Christian Democratic Union (CDU) since 2000. She is widely considered to be the de facto leader of the European Union, the G7 and the G20.
+
+## **Barrack Obama**
+    `
+  }
+  <SpanImageWrap
+    image={SESSIONS.polititians
+      .close_up_portrait_of_Barrack_Obama_reeds_ba_8753834_512x512_s50_g20_p078_sd_v1_4_335702722}
+  />
+  {
+    md`
+Barack Obama is an American attorney and politician who served as the 44th President of the United States from 2009 to 2017. He is a member of the Democratic Party and the first African American to serve as President. He was awarded the Nobel Peace Prize in 2009.
+
+## **Benito Mussolini**
+    `
+  }
+  <SpanImageWrap
+    image={SESSIONS.polititians
+      .close_up_portrait_of_Benito_Mussolini_reeds_8753833_512x512_s50_g217_p096_sd_v1_4_1241760075}
+  />
+  {
+    md`
+Benito Mussolini was an Italian politician who founded the National Fascist Party and led Italy as Prime Minister from 1922 to 1943. He is considered the founder of fascism and the totalitarian state in Italy, which led to the devastation of World War II.
+
+## **Boris Johnson**
+    `
+  }
+  <SpanImageWrap
+    image={SESSIONS.polititians
+      .close_up_portrait_of_Boris_Johnson_reeds_ba_8753833_512x512_s50_g217_p096_sd_v1_4_1241760075}
+  />
+  {
+    md`
+Boris Johnson is a British politician, who served as Prime Minister of the United Kingdom from 2019 to 2020. He was Mayor of London from 2008 to 2016. He is a member of the Conservative Party.
+
+## **Christian Lindner**
+    `
+  }
+  <SpanImageWrap
+    image={SESSIONS.polititians
+      .close_up_portrait_of_Christian_Lindner_reeds_8753834_512x512_s50_g20_p078_sd_v1_4_335702722}
+  />
+  {
+    md`
+Christian Lindner is a German politician who has been the leader of the Free Democratic Party since 2013. He is member of the German Bundestag since 2013. He is the chairman of the FDP's parliamentary group.
+
+## **Donald Trump**
+    `
+  }
+  <SpanImageWrap
+    image={SESSIONS.polititians
+      .close_up_portrait_of_Donald_Trump_reeds_bac_8753834_512x512_s50_g20_p078_sd_v1_4_335702722}
+  />
+  {
+    md`
+Donald Trump is an American businessman and television personality who served as the 45th President of the United States from 2017 to 2021. He was the chairman and president of The Trump Organization, which is a U.S.-based real-estate developer. He is a member of the Republican Party.
+
+## **Joe Biden**
+    `
+  }
+  <SpanImageWrap
+    image={SESSIONS.polititians
+      .close_up_portrait_of_Joe_Biden_reeds_backli_8753834_512x512_s50_g20_p078_sd_v1_4_335702722}
+  />
+  {
+    md`
+Joe Biden is an American politician who served as the 46th President of the United States from 2021. He served as Vice President under Barack Obama from 2009 to 2017 and as a United States Senator representing Delaware from 1973 to 2009.
+
+## **John F Kennedy**
+    `
+  }
+  <SpanImageWrap
+    image={SESSIONS.polititians
+      .close_up_portrait_of_John_F_Kennedy_reeds_b_8753833_512x512_s75_g20_p078_sd_v1_4_335702722}
+  />
+  {
+    md`
+John F. Kennedy, often referred to by his initials JFK, was an American politician who served as the 35th President of the United States from 1961 until his assassination in 1963. He is one of the most popular presidents in American history, and his youth and charisma were often cited as reasons for his popularity.
+
+## **Kim Jong Un**
+    `
+  }
+  <SpanImageWrap
+    image={SESSIONS.polititians
+      .close_up_portrait_of_Kim_Jong_Un_reeds_back_8753833_512x512_s50_g20_p078_sd_v1_4_335702722}
+  />
+  {
+    md`
+Kim Jong-un is a North Korean politician who has been Supreme Leader of North Korea since 2011. He is the second child of Kim Jong-il and the grandson of Kim Il-sung, the country's first Supreme Leader. He is the chairman of the Workers' Party of Korea and the Supreme Commander of the Korean People's Army.
+
+## **Mahatma Gandhi**
+    `
+  }
+  <SpanImageWrap
+    image={SESSIONS.polititians
+      .close_up_portrait_of_Mahatma_Gandhi_reeds_b_8753839_512x512_s75_g20_p077_sd_v1_4_1100838440}
+  />
+  {
+    md`
+Mahatma Gandhi was an Indian independence activist who was the leader of the Indian National Congress and one of the most important figures in the Indian independence movement. He is considered the father of the nation in India and is commonly referred to as "Mahatma" (great soul). He was assassinated in 1948.
+
+## **Margaret Thatcher**
+    `
+  }
+  <SpanImageWrap
+    image={SESSIONS.polititians
+      .close_up_portrait_of_Margaret_Thatcher_reeds_8753834_512x512_s50_g20_p084_sd_v1_4_335702722}
+  />
+  {
+    md`
+Margaret Thatcher was a British stateswoman who served as Prime Minister of the United Kingdom from 1979 to 1990. She was the Leader of the Conservative Party from 1975 to 1990. She was the longest-serving British Prime Minister of the 20th century and the first woman to hold that office.
+
+## **Olaf Scholz**
+    `
+  }
+  <SpanImageWrap
+    image={SESSIONS.polititians
+      .close_up_portrait_of_Olaf_Scholz_reeds_back_8753839_512x512_s50_g20_p077_sd_v1_4_945762778}
+  />
+  {
+    md`
+Olaf Scholz is a German politician who is the Federal Minister of Finance and Vice Chancellor. He is a member of the Social Democratic Party of Germany (SPD). He was the Mayor of Hamburg from 2011 to 2018.\n
+The AI generated Image looks way off, Olaf Scholz does not look this cool in real life. Maybe Olaf is just not well known enough to be present in the training data of the stable diffusion model.
+
+## **Otto von Bismarck**
+    `
+  }
+  <SpanImageWrap
+    image={SESSIONS.polititians
+      .close_up_portrait_of_Otto_von_Bismarck_reeds_8753833_512x512_s50_g217_p096_sd_v1_4_1241760075}
+  />
+  {
+    md`
+Otto von Bismarck was a German statesman who served as Prime Minister of Prussia from 1862 to 1890 and as the first Chancellor of Germany from 1871 to 1890. He is considered the architect of a Prussian-dominated Germany and a key figure in the unification of Germany.
+
+## **The Queen of England**
+    `
+  }
+  <SpanImageWrap
+    image={SESSIONS.polititians
+      .close_up_portrait_of_The_Queen_of_England_ree_8753833_512x512_s50_g20_p085_sd_v1_4_335702722}
+  />
+  {
+    md`
+Queen Elizabeth II is the current queen of the United Kingdom and the other Commonwealth realms. She has been queen since 1952, making her the longest-reigning current monarch in the world. She is also the longest-reigning queen regnant in British history.
+
+## **Viktor Orbán**
+    `
+  }
+  <SpanImageWrap
+    image={SESSIONS.polititians
+      .close_up_portrait_of_Viktor_Orb_n_reeds_bac_5288610_512x512_s50_g217_p08_sd_v1_4_655770202}
+  />
+  {
+    md`
+Viktor Orbán is a Hungarian politician who has been Prime Minister of Hungary since 2010. He is the chairman of the Fidesz party and has been a member of the National Assembly of Hungary since 1990. He is known for his right-wing populist policies.
+
+## **Wladimir Putin**
+    `
+  }
+  <SpanImageWrap
+    image={SESSIONS.polititians
+      .close_up_portrait_of_Wladimir_Putin_reeds_b_8753833_512x512_s50_g20_p052_sd_v1_4_335702722}
+  />
+  {
+    md`
+Vladimir Putin is a Russian politician and former intelligence officer who has been President of Russia since 2000. He is the current leader of United Russia and chairman of the Council of Ministers of the Union of Russia and Belarus. He is one of the most powerful and controversial leaders in the world.
+
+## **Xi Jinping**
+    `
+  }
+  <SpanImageWrap
+    image={SESSIONS.polititians
+      .close_up_portrait_of_Xi_Jinping_reeds_backl_8753833_512x512_s75_g20_p052_sd_v1_4_335702722}
+  />
+  {
+    md`
+Xi Jinping is a Chinese politician who has been General Secretary of the Communist Party of China since 2012 and President of the People's Republic of China since 2013. He is also the Chairman of the Central Military Commission and the Paramount leader of China. He is considered the most powerful Chinese leader since Mao Zedong.
+    `
+  }
+</div>

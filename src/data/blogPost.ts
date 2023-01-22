@@ -6,6 +6,7 @@ export type BlogPostDataNoSlug = {
   excerpt: string;
   publishDate: string; // "2023-01-18"
   image: string;
+  imagelq?: string;
   category: Category;
   author: Author;
   tags: string[];
@@ -17,6 +18,7 @@ export type BlogPostData = {
   excerpt: string;
   publishDate: string; // "2023-01-18"
   image: string;
+  imagelq?: string;
   category: Category;
   author: Author;
   tags: string[];

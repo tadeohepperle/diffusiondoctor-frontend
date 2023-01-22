@@ -2,7 +2,7 @@ import fs from "fs";
 import { execSync } from "child_process";
 /*
 
-expects PROJECTROOT/../generated/ui/ to have subfolders like "12312323212" that in turn contain pairs of images (jpeg or png) and json files with same file name.
+expects PROJECTROOT/../curated/ui/ to have subfolders like "12312323212" that in turn contain pairs of images (jpeg or png) and json files with same file name.
 each subfolder is one session from https://github.com/cmdr2/stable-diffusion-ui (2.5.8 beta)
 
 copies images over to /public/images/generated/ui/$sessionId/$imageSlug.jpeg or png
@@ -16,7 +16,7 @@ appends sessions to zscripts/sessions_already_imported.txt such that they are no
 
 */
 
-const STABLE_DIFFUSION_UI_SAVE_PATH = "../generated/ui";
+const STABLE_DIFFUSION_UI_SAVE_PATH = "../curated/ui";
 const STABLE_DIFFUSION_UI_PUBLIC_PATH = "./public/images/generated/ui";
 const SESSIONS_DATA_CODE_PATH = "./src/data/generated";
 const SESSIONS_ALREADY_IMPORTED_TXT_PATH =
@@ -37,12 +37,20 @@ async function imimport() {
       continue;
     }
 
-    let sessionId = new Date(parseInt(sessionFolderName))
-      .toISOString()
-      .split(".")[0]
-      .replaceAll("-", "_")
-      .replaceAll(":", "_");
-    sessionId = `D${sessionId}`;
+    let sessionId = (() => {
+      try {
+        let sessionId = new Date(parseInt(sessionFolderName))
+          .toISOString()
+          .split(".")[0]
+          .replaceAll("-", "_")
+          .replaceAll(":", "_");
+        sessionId = `D${sessionId}`;
+        return sessionId;
+      } catch (ex) {
+        return sessionFolderName;
+      }
+    })();
+
     sessionIdToOriginalFolderName[sessionId] = sessionFolderName;
     const sessionContents = fs.readdirSync(
       `${STABLE_DIFFUSION_UI_SAVE_PATH}/${sessionFolderName}`

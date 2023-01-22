@@ -10,7 +10,7 @@ import remarkGfm from "remark-gfm";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://stablo-astro.web3templates.com",
+  site: "http://localhost:3000",
   integrations: [
     tailwind(),
     image({

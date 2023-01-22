@@ -1,4 +1,4 @@
-import { GenImage } from "./../data/genImage";
+import { GenImage, SESSIONS } from "./../data/genImage";
 // import getReadingTime from "reading-time";
 import { toString } from "mdast-util-to-string";
 
@@ -33,19 +33,15 @@ export const checkImageUrl = (image, url) => {
   }
 };
 
-export const PLACEHOLDER_IMAGE =
-  "https://assets.dicebreaker.com/dnd-5e-strixhaven-curriculum-of-chaos-artwork-2.jpg/BROK/thumbnail/1600x900/quality/100/dnd-5e-strixhaven-curriculum-of-chaos-artwork-2.jpg";
+export const PLACEHOLDER_IMAGE = genImagePath(
+  SESSIONS.polititians
+    .close_up_portrait_of_Angela_Merkel_reeds_ba_8753833_512x512_s50_g20_p078_sd_v1_4_335702722
+);
 
-export function genImagePath(
-  genImage: GenImage,
-  sr: "string" | undefined = undefined
-): string {
+export function genImagePath(genImage: GenImage): string {
   return `/images/generated/ui/${genImage.session}/${genImage.slug}.jpeg`;
 }
-export function genImagePathSR(
-  genImage: GenImage,
-  sr: "string" | undefined = undefined
-): string {
+export function genImagePathSR(genImage: GenImage): string {
   return `/images/generated/ui/${genImage.session}/${genImage.slug}SR4.jpeg`;
 }
 

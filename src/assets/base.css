@@ -12,7 +12,10 @@
     @apply dark:text-cyan-300 text-cyan-500 font-bold;
   }
 
-  .prose-default {
+  h2 > strong {
+    display: block;
+    width: 100%;
+    text-align: center;
   }
 }
 
@@ -27,6 +30,7 @@
   max-height: 100%;
   background: red;
   z-index: 1010;
+  border: 1px solid white;
 }
 
 .modal-guts {

@@ -1,0 +1,29 @@
+---
+import { GenImage } from "@data/genImage";
+import SpanImage from "./SpanImage.astro";
+
+export interface Props {
+  image: GenImage | string;
+  title?: string;
+  details?: boolean;
+  aspect?: "3/1" | "2/1" | "video" | "square";
+  interactive?: boolean;
+  width?: string;
+}
+
+const { image, title, details, aspect, interactive, minImageSize } =
+  Astro.props;
+const width = Astro.props.width || "400px";
+---
+
+<div class="flex justify-center">
+  <div style={`width: ${width}; max-width: 100%;`}>
+    <SpanImage
+      image={image}
+      title={title}
+      details={details}
+      aspect={aspect}
+      interactive={interactive}
+    />
+  </div>
+</div>
