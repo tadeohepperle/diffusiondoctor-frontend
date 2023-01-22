@@ -10,6 +10,7 @@ import remarkGfm from "remark-gfm";
 
 // https://astro.build/config
 export default defineConfig({
+  outDir: "./docs",
   site: "http://localhost:3000",
   integrations: [
     tailwind(),
