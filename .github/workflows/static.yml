@@ -9,11 +9,7 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-base: '/dist'
 
-routes:
-  - match: '/'
-    redirect: '/dist'
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
@@ -29,6 +25,11 @@ concurrency:
 jobs:
   # Single deploy job since we're just deploying
   deploy:
+    base: '/dist'
+
+    routes:
+      - match: '/'
+    redirect: '/dist'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
