@@ -33,10 +33,7 @@ export const checkImageUrl = (image, url) => {
   }
 };
 
-export const PLACEHOLDER_IMAGE = genImagePath(
-  SESSIONS.polititians
-    .close_up_portrait_of_Angela_Merkel_reeds_ba_8753833_512x512_s50_g20_p078_sd_v1_4_335702722
-);
+export const PLACEHOLDER_IMAGE = "/images/misc/default_post_header_image.jpeg";
 
 export function genImagePath(genImage: GenImage): string {
   return `/images/generated/ui/${genImage.session}/${genImage.slug}.jpeg`;

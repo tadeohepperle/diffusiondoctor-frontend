@@ -1,91 +1,82 @@
 ---
+import { Picture } from "@astrojs/image/components";
 import SmallBadge from "@components/ui/SmallBadge.astro";
 import { GenImage } from "@data/genImage";
-import { genImagePath } from "@utils/utils";
+import { genImagePath, genImagePathSR } from "@utils/utils";
 export interface Props {
   image: GenImage | string;
   title?: string;
   details?: boolean;
-  aspect?: "3/1" | "2/1" | "video" | "square";
+  aspectRatio?: `${number} /${number}`;
   interactive?: boolean;
+  class?: string;
 }
-const aspectClass = Astro.props.aspect
-  ? {
-      "3/1": "aspect-3/1",
-      "2/1": "aspect-2/1",
-      video: "aspect-video",
-      square: "aspect-square",
-    }[Astro.props.aspect]
-  : "";
+
 const { image, title } = Astro.props;
+
+const aspectRatio = Astro.props.aspectRatio || "1:1";
 
 const details = Astro.props.details ?? true;
 const interactive = Astro.props.interactive ?? typeof image !== "string";
-
+const className = Astro.props.class;
 const imageUrl = typeof image !== "string" ? genImagePath(image) : image;
 ---
 
-{
-  typeof image !== "string" && (
-    <figure class="m-0">
-      <div class={`relative group prose-base`}>
-        <img
-          data-image={JSON.stringify(image)}
-          alt={image.prompt}
-          src={imageUrl}
-          loading="lazy"
-          class={`span-image-marker m-0 w-full ${
-            aspectClass ?? "aspect-square"
-          } ${interactive ? "cursor-pointer" : ""}`}
-        />
-        {details && (
-          <div class="max-w-md absolute bottom-0 left-0 opacity-0 group-hover:opacity-100 hidden md:block text-xs md:text-sm ml-2 mb-2">
-            <SmallBadge label="prompt" value={image.prompt || "none"} />
+<figure class={`${className ?? "m-0"}`}>
+  <div class={`relative group prose-base`}>
+    <img
+      src={imageUrl}
+      style={`aspect-ratio: ${aspectRatio};`}
+      alt={title || (typeof image !== "string" && image.prompt) || ""}
+      loading="lazy"
+      class={`object-cover span-image-marker m-0 w-full ${
+        interactive ? "cursor-pointer" : ""
+      }`}
+      data-image={typeof image === "string" ? undefined : JSON.stringify(image)}
+    />
+    {
+      typeof image !== "string" && details && (
+        <div class=" text-left max-w-md absolute bottom-0 left-0 opacity-0 group-hover:opacity-100 hidden md:block text-xs md:text-sm ml-2 mb-2">
+          <SmallBadge label="prompt" value={image.prompt || "none"} />
 
-            {image.negative_prompt && (
-              <SmallBadge
-                label="negative prompt"
-                value={image.negative_prompt}
-              />
-            )}
-            <SmallBadge
-              label="size"
-              value={`${image.width} x ${image.height}`}
-            />
-            <SmallBadge label="seed" value={image.seed} />
-            <SmallBadge label="steps" value={image.num_inference_steps} />
-            {image.guidance_scale && (
-              <SmallBadge label="guidance scale" value={image.guidance_scale} />
-            )}
-            {image.prompt_strength && (
-              <SmallBadge
-                label="prompt strength"
-                value={image.prompt_strength}
-              />
-            )}
-            {image.sampler_name && (
-              <SmallBadge label="sampler" value={image.sampler_name} />
-            )}
-            {image.stable_diffusion_model && (
-              <SmallBadge label="model" value={image.stable_diffusion_model} />
-            )}
+          {image.negative_prompt && (
+            <SmallBadge label="negative prompt" value={image.negative_prompt} />
+          )}
+          <SmallBadge label="size" value={`${image.width} x ${image.height}`} />
+          <SmallBadge label="seed" value={image.seed} />
+          <SmallBadge label="steps" value={image.num_inference_steps} />
+          {image.guidance_scale && (
+            <SmallBadge label="guidance scale" value={image.guidance_scale} />
+          )}
+          {image.prompt_strength && (
+            <SmallBadge label="prompt strength" value={image.prompt_strength} />
+          )}
+          {image.sampler_name && (
+            <SmallBadge label="sampler" value={image.sampler_name} />
+          )}
+          {image.stable_diffusion_model && (
+            <SmallBadge label="model" value={image.stable_diffusion_model} />
+          )}
+        </div>
+      )
+    }
+    {
+      typeof image !== "string" && details && (
+        <div class="absolute bottom-0 left-0 group-hover:hidden hidden md:block opacity-100 text-xs md:text-sm ml-2 mb-2">
+          <div class="rounded px-2 text-center shadow pill opacity-80 bg-white text-gray-800 dark:text-gray-200 dark:bg-black">
+            details
           </div>
-        )}
-        {details && (
-          <div class="absolute bottom-0 left-0 group-hover:hidden hidden md:block opacity-100 text-xs md:text-sm ml-2 mb-2">
-            <div class="rounded px-2 text-center shadow pill opacity-80 bg-white text-gray-800 dark:text-gray-200 dark:bg-black">
-              details
-            </div>
-          </div>
-        )}
-      </div>
+        </div>
+      )
+    }
+  </div>
 
-      {title && (
-        <figcaption class="mt-1 mb-2 text-center text-sm">{title}</figcaption>
-      )}
-    </figure>
-  )
-}
+  {
+    title && (
+      <figcaption class="mt-1 mb-2 text-center text-sm">{title}</figcaption>
+    )
+  }
+</figure>
 
 <script>
   import { genImagePathSR } from "@utils/utils";
@@ -120,7 +111,7 @@ const imageUrl = typeof image !== "string" ? genImagePath(image) : image;
       imageData
     )}></img>
     <div class="p-1">
-   
+    
     ${dataAttributesConfig
       .map((el) => {
         const [label, valF] = el;
@@ -154,10 +145,12 @@ const imageUrl = typeof image !== "string" ? genImagePath(image) : image;
 
   let imageElements = document.querySelectorAll("img.span-image-marker");
   for (let imageElement of imageElements) {
-    imageElement.addEventListener("click", () => {
-      console.log("click", imageElement);
+    if (imageElement.getAttribute("data-image")) {
+      imageElement.addEventListener("click", () => {
+        console.log("click", imageElement);
 
-      openModal(imageElement);
-    });
+        openModal(imageElement);
+      });
+    }
   }
 </script>

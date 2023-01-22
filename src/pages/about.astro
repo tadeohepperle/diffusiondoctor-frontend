@@ -5,6 +5,9 @@ import { Image } from "@astrojs/image/components";
 import { authors } from "@data/authors";
 import Pagetitle from "@components/pagetitle.astro";
 import Link from "@components/ui/link.astro";
+import SpanImage from "@components/content/SpanImage.astro";
+import { SESSIONS } from "@data/genImage";
+import { PLACEHOLDER_IMAGE } from "@utils/utils";
 ---
 
 <Layout title="About">
@@ -12,9 +15,20 @@ import Link from "@components/ui/link.astro";
     <Pagetitle>
       <Fragment slot="title">About Diffusion Doctor</Fragment>
       <Fragment slot="desc">
-        The blog about Stable Diffusion image generation
+        Welcome to Diffusion Doctor, a blog dedicated to showcasing the latest
+        and greatest in AI-generated images. Our focus is on stable diffusion
+        models, which allow for the creation of high-quality images with a wide
+        range of applications.
       </Fragment>
     </Pagetitle>
+
+    <SpanImage class="my-5" aspectRatio={"3 / 1"} image={PLACEHOLDER_IMAGE} />
+    <p class="text-center text-lg mt-3 text-gray-600 dark:text-gray-300">
+      From art and design to scientific visualization, we explore the
+      possibilities and limitations of this cutting-edge technology. Check in
+      every week for new articles and exciting examples of AI-generated images.
+      Thanks for visiting!
+    </p>
 
     <div class="flex items-center justify-center mt-6">
       <div class="group">
@@ -31,15 +45,16 @@ import Link from "@components/ui/link.astro";
 
         <div class="mt-4 text-center">
           <h3 class="text-sm text-gray-500">
-            {authors.tadeoHepperle.name}<br />author and developer
+            {authors.tadeoHepperle.name}<br />Yep that's me.
           </h3>
         </div>
       </div>
     </div>
 
-    <div class="mx-auto max-w-xl text-center mt-14">
+    <div class="mx-auto max-w-xl text-center mt-4">
       <p class="text-lg leading-relaxed text-gray-600 dark:text-gray-300">
-        This is a blog about Stable Diffusion.
+        Feel free to reach out to me, if you generate images yourself and want
+        to showcase some on our blog. We want to give more exposure to AI art.
       </p>
       <div class="mt-8">
         <Link href="/contact" style="primary">Get in touch</Link>

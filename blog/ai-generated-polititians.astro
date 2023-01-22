@@ -1,4 +1,5 @@
 ---
+import SpanImage from "@components/content/SpanImage.astro";
 import SpanImageWrap from "@components/content/SpanImageWrap.astro";
 import { authors } from "@data/authors";
 import { BlogPostDataNoSlug } from "@data/blogPost";
@@ -9,7 +10,8 @@ import { genImagePath, genImagePathSR, PLACEHOLDER_IMAGE } from "@utils/utils";
 
 export const data: BlogPostDataNoSlug = {
   title: "Can you recognize these 20 AI-generated portraits of polititians?",
-  excerpt: "________",
+  excerpt:
+    "We generated 20 portraits of famous polititians and dictators using a Stable Diffusion Model. Some may be bad, but can you recognize them?",
   publishDate: "2023-01-18",
   image: genImagePathSR(
     SESSIONS.polititians
@@ -21,14 +23,14 @@ export const data: BlogPostDataNoSlug = {
   ),
   category: categories.objectStudies,
   author: authors.tadeoHepperle,
-  tags: ["_____"],
+  tags: ["Polititian", "Artworks", "Digital Painting"],
 };
 ---
 
 <div>
   {
     md`
-We used Stable Diffusssion models to generate Images of famous polititians. We tried all kinds of prompts and parameters until we came up with the portrait of Viktor Orbán (dictator of some country in Eastern Europe, see below). We then took this image as an imput and changed the polititians name in the prompt to generate the following portraits.
+We used the Stable Diffusssion 1.4 model to generate Images of famous polititians. We tried all kinds of prompts and parameters until we came up with the portrait of Viktor Orbán (dictator of some country in Eastern Europe, see below). We then took this image as an imput and changed the polititians name in the prompt to generate the following portraits.
 
 ## **Erdoğan**
     `
