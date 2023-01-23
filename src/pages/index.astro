@@ -1,4 +1,5 @@
 ---
+import Comments from "@components/comments.astro";
 import Container from "@components/container.astro";
 import Postcard from "@components/postcard.astro";
 import { BlogPost } from "@data/blogPost";
@@ -30,6 +31,7 @@ const latestPosts = await getLatestPosts();
             .map((post) => <Postcard postData={post.data} aspect="square" />)
         }
       </div>
+      <Comments pageTitle="index" pageURL="https://diffusiondoctor.com/" />
     </main>
   </Container>
 </Layout>

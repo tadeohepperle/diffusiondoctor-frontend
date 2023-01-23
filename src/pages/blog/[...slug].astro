@@ -31,6 +31,8 @@ const post: BlogPost = Astro.props.post;
 const Visual: BlogPostVisual = post.visual;
 const data: BlogPostData = post.data;
 const { category, author } = post.data;
+
+const detailedHeaderImage = true;
 ---
 
 <Layout
@@ -89,10 +91,10 @@ const { category, author } = post.data;
   <div
     class="relative z-0 max-w-screen-lg mx-auto overflow-hidden lg:rounded-lg aspect-video">
     {
-      post.data.image && (
+      post.data.image && !detailedHeaderImage && (
         <Picture
           src={post.data.image}
-          widths={[200, 400, 800]}
+          widths={[512, 1024]}
           sizes="(max-width: 640px) 90vw, 480px"
           aspectRatio="16:9"
           width={1024}
@@ -100,6 +102,19 @@ const { category, author } = post.data;
           alt="Thumbnail"
           loading="eager"
           class="w-full"
+        />
+      )
+    }
+
+    {
+      post.data.image && detailedHeaderImage && (
+        <img
+          src={post.data.image}
+          width={1024}
+          height={576}
+          alt="Thumbnail"
+          loading="eager"
+          class="w-full object-cover aspect-3/2"
         />
       )
     }

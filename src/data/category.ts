@@ -5,8 +5,9 @@ export interface Category {
     | "object-studies"
     | "challenge"
     | "models-and-paramters"
-    | "finetuning-and-training";
-  color: "green" | "blue" | "orange" | "purple" | "pink";
+    | "finetuning-and-training"
+    | "discoveries";
+  color: "green" | "blue" | "orange" | "purple" | "pink" | "red";
   description: string;
 }
 
@@ -15,7 +16,8 @@ type slugsCamelCase =
   | "objectStudies"
   | "challenge"
   | "modelsAndParamters"
-  | "finetuningAndTraining";
+  | "finetuningAndTraining"
+  | "dicoveries";
 export const categories: Record<slugsCamelCase, Category> = {
   styleStudies: {
     title: "Style Studies",
@@ -49,6 +51,13 @@ export const categories: Record<slugsCamelCase, Category> = {
     title: "Finetuning and Training",
     slug: "finetuning-and-training",
     color: "pink",
+    description:
+      "Exploring how we can fine tune Stable Diffusion models to suit our needs.",
+  },
+  dicoveries: {
+    title: "Discoveries",
+    slug: "discoveries",
+    color: "red",
     description:
       "Exploring how we can fine tune Stable Diffusion models to suit our needs.",
   },

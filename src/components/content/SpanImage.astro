@@ -9,7 +9,10 @@ export interface Props {
   aspectRatio?: `${number} /${number}`;
   interactive?: boolean;
   class?: string;
+  upscaleInModal?: boolean;
 }
+
+const upscaleInModal = Astro.props.upscaleInModal ?? true;
 
 const { image, title } = Astro.props;
 
@@ -32,6 +35,7 @@ const imageUrl = typeof image !== "string" ? genImagePath(image) : image;
         interactive ? "cursor-pointer" : ""
       }`}
       data-image={typeof image === "string" ? undefined : JSON.stringify(image)}
+      data-upscale={upscaleInModal}
     />
     {
       typeof image !== "string" && details && (
@@ -78,11 +82,14 @@ const imageUrl = typeof image !== "string" ? genImagePath(image) : image;
 </figure>
 
 <script>
-  import { genImagePathSR } from "@utils/utils";
+  import { genImagePathSR, genImagePath } from "@utils/utils";
 
   function openModal(imageElement) {
     document.body.style.overflow = "hidden";
     const imageData = JSON.parse(imageElement.getAttribute("data-image"));
+    const shouldUseUpscaledVersion = JSON.parse(
+      imageElement.getAttribute("data-upscale")
+    );
 
     const dataAttributesConfig = [
       ["prompt", "prompt"],
@@ -106,9 +113,9 @@ const imageUrl = typeof image !== "string" ? genImagePath(image) : image;
       <div class="animate-pulse" style="height: 20px">Loading...</div>
       </div>
     </div>
-    <img class="w-full absolute top-0 left-0 rounded-tr-lg rounded-tl-lg" src=${genImagePathSR(
-      imageData
-    )}></img>
+    <img class="w-full absolute top-0 left-0 rounded-tr-lg rounded-tl-lg" src=${(shouldUseUpscaledVersion
+      ? genImagePathSR
+      : genImagePath)(imageData)}></img>
     <div class="p-1">
     
     ${dataAttributesConfig

@@ -1,0 +1,303 @@
+---
+import ImageGrid from "@components/content/ImageGrid.astro";
+import SpanImage from "@components/content/SpanImage.astro";
+import { authors } from "@data/authors";
+import { BlogPostDataNoSlug } from "@data/blogPost";
+import { categories } from "@data/category";
+import { MISC } from "@data/generated/misc";
+import { SESSIONS } from "@data/genImage";
+import { md } from "@utils/markdown";
+import { genImagePath, genImagePathSR } from "@utils/utils";
+
+export const draft = false;
+
+export const data: BlogPostDataNoSlug = {
+  title: "The Woman out of Darkness - The story of a creature I discovered",
+  excerpt:
+    "I just used a black image as input. And told the model to make a photograph of a woman from that. The model kept generating the same eerie image of a woman...",
+  publishDate: "2023-01-23",
+  image: MISC.blogposts.woman.womanupscaledthumnail_jpeg,
+  category: categories.dicoveries,
+  author: authors.tadeoHepperle,
+  tags: [
+    "horror",
+    "emergent creatures",
+    "experiments",
+    "image input",
+    "stable diffusion",
+  ],
+};
+---
+
+<div>
+  {
+    md`
+# How did she appear?
+
+Yesterday I was experimenting with the new Protogen v3.4 model for Stable Diffusion - an AI architechture for image generation.
+I was playing with the option to give the model an input image along with a text prompt. Curiously I just used a black image as input with the simple prompt:
+\`a photo of a woman\`.
+    `
+  }
+  <SpanImage image={MISC.blogposts.woman.graphicarr_png} title={""} />
+  {
+    md`
+Nothing fancy. No styles applied. No negative prompt. Just these 5 words. I chose 768x768 as the output size, as it is the highest setting that runs on my GPU.
+The first image I generated is the image you see in the header above: A woman indeed. But something seems off about her. So I ran the model again with randomly chosen seeds, and again, and again.
+I realized one thing:
+    `
+  }
+  <ImageGrid
+    upscaleInModal={false}
+    xDim={3}
+    mobileXDim={2}
+    images={[
+      SESSIONS.woman
+        .a_photo_of_a_woman_2231808_768x768_s25_g354_p095_protogenX34Photorealism_1_3078564, // horror
+      SESSIONS.woman
+        .a_photo_of_a_woman_4464387_768x768_s25_g354_p095_protogenX34Photorealism_1_3078564, // good
+
+      SESSIONS.woman
+        .a_photo_of_a_woman_4751243_768x768_s25_g354_p095_protogenX34Photorealism_1_3078564, // top
+
+      SESSIONS.woman
+        .a_photo_of_a_woman_6172193_768x768_s25_g354_p095_protogenX34Photorealism_1_3078564, // og
+      SESSIONS.woman
+        .a_photo_of_a_woman_4098609_768x768_s25_g354_p095_protogenX34Photorealism_1_3078564, // good
+      SESSIONS.woman
+        .a_photo_of_a_woman_1347775_768x768_s25_g354_p095_protogenX34Photorealism_1_3078564, // very good top
+    ]}
+  />
+  {
+    md`
+> It was the same woman over and over again. First I thought it's a coincidence, but there is something about the black input image that evokes this creature.
+
+She does not look creepy in all of them. In fact it is just a slighty asian looking, middle aged woman with wrinkles. What creeps me out is the fact that she, and almost exclusively she, appears in almost all images I generated, even though the seeds were random. I had so many questions.
+Here are some of many examples:
+    `
+  }
+  <ImageGrid
+    upscaleInModal={false}
+    xDim={3}
+    mobileXDim={2}
+    images={[
+      SESSIONS.woman
+        .a_photo_of_a_woman_4364692_768x768_s25_g354_p095_protogenX34Photorealism_1_3078564, // good
+      SESSIONS.woman
+        .a_photo_of_a_woman_4337779_768x768_s25_g354_p095_protogenX34Photorealism_1_3078564, // good
+
+      SESSIONS.woman
+        .a_photo_of_a_woman_9835785_768x768_s25_g354_p095_protogenX34Photorealism_1_3078564,
+      SESSIONS.woman
+        .a_photo_of_a_woman_5195619_768x768_s25_g354_p095_protogenX34Photorealism_1_3078564, // h
+      SESSIONS.woman
+        .a_photo_of_a_woman_7024487_768x768_s25_g354_p095_protogenX34Photorealism_1_3078564,
+
+      SESSIONS.woman
+        .a_photo_of_a_woman_3377954_768x768_s25_g354_p095_protogenX34Photorealism_1_3078564, // good
+    ]}
+  />
+  {
+    md`
+> What is this woman? Is she a result of overfitting the neural network? If so, what is the base for this? Does this woman exist?
+
+Only a few weeks back I read an [AI horror story about an emergent woman named Loab](https://www.sciencealert.com/a-nightmare-face-is-haunting-ai-art-and-theres-a-reason-we-shouldnt-look-away). I have to admit that this woman I found in the dark image is less creepy, but the phenomenon bears some similarity.
+
+Notive how sometimes the woman is older or younger:
+    `
+  }
+  <ImageGrid
+    upscaleInModal={false}
+    xDim={3}
+    mobileXDim={2}
+    images={[
+      SESSIONS.woman
+        .a_photo_of_a_woman_8275357_768x768_s25_g354_p095_protogenX34Photorealism_1_3078564,
+      SESSIONS.woman
+        .a_photo_of_a_woman_9393656_768x768_s25_g354_p095_protogenX34Photorealism_1_3078564,
+
+      SESSIONS.woman
+        .a_photo_of_a_woman_2813054_768x768_s25_g354_p095_protogenX34Photorealism_1_3078564, // old sad
+
+      SESSIONS.woman
+        .a_photo_of_a_woman_5021583_768x768_s25_g354_p095_protogenX34Photorealism_1_3078564,
+
+      SESSIONS.woman
+        .a_photo_of_a_woman_1564934_768x768_s25_g354_p095_protogenX34Photorealism_1_3078564, // good
+      SESSIONS.woman
+        .a_photo_of_a_woman_9623165_768x768_s25_g354_p095_protogenX34Photorealism_1_3078564,
+    ]}
+  />
+  {
+    md`
+## The search for the woman
+
+I tried to use [Google Image Search](https://www.google.com/imghp?hl=EN) and [Google Lens](https://lens.google/) with several generated images to find images online that resemble any similarity with the woman. However they yielded no reasult.
+If this woman had been a well known person, I wouldn't be surprised by her recurring appearance, but it seems like this woman is entirely made up by the AI.
+
+Only the more younger looking appearances gave me some association: [Barriss Offee](https://starwars.fandom.com/wiki/Barriss_Offee), a character from _Star Wars: The Clone Wars_. Because both have black dots in their faces.
+    `
+  }
+  <ImageGrid
+    upscaleInModal={false}
+    xDim={3}
+    mobileXDim={1}
+    images={[
+      SESSIONS.woman
+        .a_photo_of_a_woman_1549532_768x768_s25_g354_p095_protogenX34Photorealism_1_3078564, // barris
+      SESSIONS.woman
+        .a_photo_of_a_woman_6048229_768x768_s25_g354_p095_protogenX34Photorealism_1_3078564, // barris offee
+      MISC.blogposts.woman.barris_jpeg,
+    ]}
+    titles={[`"a photo of a woman"`, `"a photo of a woman"`, "Barriss Offee"]}
+  />
+  {
+    md`
+But the woman out of darkness has totally different dots that look more like age spots. The weird skin is another similarity to [Loab](https://www.sciencealert.com/a-nightmare-face-is-haunting-ai-art-and-theres-a-reason-we-shouldnt-look-away), who is admittedly far more horrible to look at.
+
+## Variations: What about girl, lady, wife?
+
+I also tried the following prompts to see if they yield different results: \`a photo of a girl\`, \`a photo of a lady\` and \`a photo of a wife\`.
+    `
+  }
+  <ImageGrid
+    upscaleInModal={false}
+    xDim={3}
+    mobileXDim={2}
+    details={false}
+    images={[
+      SESSIONS.woman
+        .a_photo_of_a_girl_1017650_768x768_s25_g333_p095_protogenX34Photorealism_1_3078564, // girl
+      SESSIONS.woman
+        .a_photo_of_a_wife_7382723_768x768_s25_g333_p095_protogenX34Photorealism_1_3078564, // wife
+      SESSIONS.woman
+        .a_photo_of_a_lady_6884884_768x768_s25_g333_p095_protogenX34Photorealism_1_3078564, // lady
+      SESSIONS.woman
+        .a_photo_of_a_girl_7574043_768x768_s25_g333_p095_protogenX34Photorealism_1_3078564, // girl
+      SESSIONS.woman
+        .a_photo_of_a_wife_8248114_768x768_s25_g333_p095_protogenX34Photorealism_1_3078564, // wife
+
+      SESSIONS.woman
+        .a_photo_of_a_lady_4581064_768x768_s25_g333_p095_protogenX34Photorealism_1_3078564, // lady
+    ]}
+    titles={[
+      `"a photo of a girl"`,
+
+      `"a photo of a wife"`,
+      `"a photo of a lady"`,
+      `"a photo of a girl"`,
+      `"a photo of a wife"`,
+      `"a photo of a lady"`,
+    ]}
+  />
+  {
+    md`
+The last lady looks like she knows something, she doesn't want to tell us.
+
+## Is there a woman out of the white?
+
+I also tried to use a plain white image as an input as opposed to the black input. Be there was usually just some hairon the side and a woman did not show up. Only one time I managed to get a snippet of a woman:
+    `
+  }
+  <ImageGrid
+    upscaleInModal={false}
+    images={[
+      SESSIONS.woman
+        .a_photo_of_a_woman_4434887_768x768_s25_g354_p095_protogenX34Photorealism_1_3078564,
+
+      SESSIONS.woman
+        .a_photo_of_a_woman_2301225_768x768_s25_g354_p095_protogenX34Photorealism_1_3078564,
+
+      SESSIONS.woman
+        .a_photo_of_a_woman_7290929_768x768_s25_g333_p095_protogenX34Photorealism_1_3078564,
+    ]}
+  />
+  {
+    md`
+## Questions remain
+
+I still have a lot of things I want to try out:
+
+> What about different colored input images? red, blue, green? If I put in \`photo of a man\` do I also get a similar photo over and over again? What is the influence of step count and image size? What about other stable diffusion models?
+
+After all I got used to seeing this woman, she is not super creepy to look at after all, even though her lip expression and black eyes are a bit weird.
+Please let me know in the comments, what you think about this effect and if you experienced something similar before.
+    `
+  }
+</div>
+
+<!-- 
+<ImageGrid
+xDim={3}
+mobileXDim={2}
+images={[
+  SESSIONS.woman
+    .a_photo_of_a_woman_9580966_768x768_s25_g354_p095_protogenX34Photorealism_1_3078564,
+
+  SESSIONS.woman
+    .a_photo_of_a_woman_3812245_768x768_s25_g354_p095_protogenX34Photorealism_1_3078564, // good
+  SESSIONS.woman
+    .a_photo_of_a_woman_9471246_768x768_s50_g75_p07_protogenX34Photorealism_1_3078564,
+
+  SESSIONS.woman
+    .a_photo_of_a_woman_8427447_768x768_s25_g354_p095_protogenX34Photorealism_1_3078564,
+
+  SESSIONS.woman
+    .a_photo_of_a_woman_8275357_768x768_s25_g354_p095_protogenX34Photorealism_1_3078564,
+
+  SESSIONS.woman
+    .a_photo_of_a_woman_6831813_768x768_s25_g354_p095_protogenX34Photorealism_1_3078564,
+
+  SESSIONS.woman
+    .a_photo_of_a_woman_6456094_768x768_s25_g354_p095_protogenX34Photorealism_1_3078564,
+
+  SESSIONS.woman
+    .a_photo_of_a_woman_6452593_768x768_s25_g354_p095_protogenX34Photorealism_1_3078564,
+
+  SESSIONS.woman
+    .a_photo_of_a_woman_6063949_768x768_s25_g354_p095_protogenX34Photorealism_1_3078564,
+
+  SESSIONS.woman
+    .a_photo_of_a_woman_5133727_768x768_s25_g354_p095_protogenX34Photorealism_1_3078564, // y
+
+  SESSIONS.woman
+    .a_photo_of_a_woman_5021583_768x768_s25_g354_p095_protogenX34Photorealism_1_3078564,
+
+  SESSIONS.woman
+    .a_photo_of_a_woman_4657093_768x768_s25_g354_p095_protogenX34Photorealism_1_3078564, //y
+
+  SESSIONS.woman
+    .a_photo_of_a_woman_3623236_768x768_s25_g354_p095_protogenX34Photorealism_1_3078564, // ??
+  SESSIONS.woman
+    .a_photo_of_a_woman_3383021_768x768_s25_g203_p095_protogenX34Photorealism_1_3078564, // mid
+
+  SESSIONS.woman
+    .a_photo_of_a_woman_2931900_768x768_s25_g354_p095_protogenX34Photorealism_1_3078564, // good weird hair
+
+  SESSIONS.woman
+    .a_photo_of_a_woman_1813540_768x768_s25_g354_p095_protogenX34Photorealism_1_3078564, // young
+
+  SESSIONS.woman
+    .a_photo_of_a_woman_662413_768x768_s25_g354_p095_protogenX34Photorealism_1_3078564, // woman ypoung
+  SESSIONS.woman
+    .a_photo_of_a_woman_454089_768x768_s25_g354_p095_protogenX34Photorealism_1_3078564, // woman good
+  SESSIONS.woman
+    .a_photo_of_a_wife_8248114_768x768_s25_g333_p095_protogenX34Photorealism_1_3078564, // wife
+  SESSIONS.woman
+    .a_photo_of_a_wife_7382723_768x768_s25_g333_p095_protogenX34Photorealism_1_3078564, // wife
+  SESSIONS.woman
+    .a_photo_of_a_lady_6884884_768x768_s25_g333_p095_protogenX34Photorealism_1_3078564, // lady
+  SESSIONS.woman
+    .a_photo_of_a_lady_4581064_768x768_s25_g333_p095_protogenX34Photorealism_1_3078564, // lady
+  SESSIONS.woman
+    .a_photo_of_a_girl_8781784_768x768_s25_g333_p095_protogenX34Photorealism_1_3078564, // girl
+  SESSIONS.woman
+    .a_photo_of_a_girl_7574043_768x768_s25_g333_p095_protogenX34Photorealism_1_3078564, // girl
+  SESSIONS.woman
+    .a_photo_of_a_girl_1017650_768x768_s25_g333_p095_protogenX34Photorealism_1_3078564, // girl
+
+  SESSIONS.woman
+    .a_photo_of_a_woman_2922597_768x768_s25_g354_p095_protogenX34Photorealism_1_3078564, // sw bad
+ // white
+]}
+/> -->

@@ -43,4 +43,4 @@ export function genImagePathSR(genImage: GenImage): string {
 }
 
 export const PROSE_DEFAULT =
-  "prose prose-base md:prose-xl lg:prose:xl dark:prose-invert prose-a:text-cyan-500 dark:prose-a:text-cyan-300";
+  "prose prose-base md:prose-xl lg:prose:xl dark:prose-invert prose-a:no-underline prose-a:text-cyan-500 dark:prose-a:text-cyan-300";

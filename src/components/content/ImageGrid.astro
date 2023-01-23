@@ -8,8 +8,18 @@ export interface Props {
   mobileXDim?: number;
   images: (GenImage | string)[];
   titles?: string[] | ((image: GenImage) => string);
+  details?: boolean;
+  upscaleInModal?: boolean;
 }
-let { images, xDim, mobileXDim, titles, autoPromptTitles } = Astro.props;
+let {
+  images,
+  xDim,
+  mobileXDim,
+  titles,
+  autoPromptTitles,
+  details,
+  upscaleInModal,
+} = Astro.props;
 
 // should be the number of input images, if not specified. However never larger than 6.
 
@@ -45,8 +55,9 @@ let gridCols: string = {
   {
     images.map((image, i) => (
       <SpanImage
+        upscaleInModal={upscaleInModal}
         image={image}
-        details={xDimDetermined < 3}
+        details={details ?? xDimDetermined < 3}
         title={
           (titles &&
             (typeof titles === "object"
