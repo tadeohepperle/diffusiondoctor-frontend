@@ -31,7 +31,7 @@ const latestPosts = await getLatestPosts();
             .map((post) => <Postcard postData={post.data} aspect="square" />)
         }
       </div>
-      <Comments pageTitle="index" pageURL="https://diffusiondoctor.com/" />
+      <Comments pageId="home" />
     </main>
   </Container>
 </Layout>
