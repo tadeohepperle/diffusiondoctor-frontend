@@ -1,11 +1,11 @@
 
 # Diffusion Doctor
 
-A blog about stable diffusion image generation
+A blog about stable diffusion image generation.
 
 ## Deployment
 
-link: diffusiondoctor.com
+link: [DiffusionDoctor.com](https://diffusiondoctor.com)
 
 ## Editor / Developer Notes
 
