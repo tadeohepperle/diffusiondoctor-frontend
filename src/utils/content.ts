@@ -23,15 +23,25 @@ export async function getAllPosts(
       const blogPost: BlogPost = {
         data: blogPostData,
         visual: imports.default,
+        relatedPosts: [],
       };
       return blogPost;
     })()
   );
   const blogPosts = (await Promise.all(importFutures)).filter(
     (e) => e !== undefined
-  );
+  ) as BlogPost[];
+  // fill relatedposts:
 
-  return blogPosts as BlogPost[];
+  for (let i = 0; i < blogPosts.length; i++) {
+    for (let j = 0; j < blogPosts.length; j++) {
+      if (i !== j) {
+        blogPosts[i].relatedPosts.push(blogPosts[j].data);
+      }
+    }
+  } // TODO: fix this, this is too simple!!! And inefficient later on
+
+  return blogPosts;
 }
 
 export const getLatestPosts = async (

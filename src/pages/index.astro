@@ -31,7 +31,6 @@ const latestPosts = await getLatestPosts();
             .map((post) => <Postcard postData={post.data} aspect="square" />)
         }
       </div>
-      <Comments pageId="home" />
     </main>
   </Container>
 </Layout>

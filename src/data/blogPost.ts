@@ -34,6 +34,7 @@ export type BlogPostNoSlug = {
 export type BlogPost = {
   data: BlogPostData;
   visual: any;
+  relatedPosts: BlogPostData[];
 };
 
 export function dataWithSlug(

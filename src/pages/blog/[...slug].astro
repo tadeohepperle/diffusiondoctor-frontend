@@ -16,6 +16,8 @@ import fs from "fs";
 import path from "path";
 
 import { getAllPosts } from "@utils/content";
+import Comments from "@components/comments.astro";
+import Postcard from "@components/postcard.astro";
 
 export async function getStaticPaths() {
   let allPosts: BlogPost[] = await getAllPosts();
@@ -31,6 +33,7 @@ const post: BlogPost = Astro.props.post;
 const Visual: BlogPostVisual = post.visual;
 const data: BlogPostData = post.data;
 const { category, author } = post.data;
+const relatedPosts: BlogPostData[] = post.relatedPosts;
 
 const detailedHeaderImage = true;
 ---
@@ -124,23 +127,41 @@ const detailedHeaderImage = true;
     <article class="max-w-screen-md mx-auto">
       <div class={`mx-auto my-3 ${PROSE_DEFAULT}`}>
         <Visual {data} />
-        <div class="mt-6 flex flex-wrap items-center w-full gap-3 md:w-auto">
-          {
-            post.data.tags.map((tag) => (
-              <span class="text-sm text-gray-500">#{tag}</span>
-            ))
-          }
-        </div>
+        {
+          post.data.tags.length > 0 && (
+            <div class="mt-6 flex flex-wrap items-center w-full gap-3 md:w-auto">
+              {post.data.tags.map((tag) => (
+                <span class="text-sm text-gray-500">#{tag}</span>
+              ))}
+            </div>
+          )
+        }
       </div>
-
-      <div class="flex justify-center mt-7 mb-7">
+      <Comments id={post.data.slug} class="my-10" />
+      <!-- <div class="flex justify-center mt-7 mb-7">
         <a
           href="/"
           class="font-bold px-5 py-3 text-sm transition rounded-md text-white bg-gray-700 hover:bg-gray-500">
           ← View all posts
         </a>
-      </div>
+      </div> -->
       {author && <Authorcard author={author} />}
     </article>
+    <div class="grid gap-10 lg:gap-10 md:grid-cols-2 mt-10">
+      {
+        relatedPosts
+          .slice(0, 2)
+          .map((post) => (
+            <Postcard postData={post} aspect="landscape" preloadImage={true} />
+          ))
+      }
+    </div>
+    <div class="grid gap-10 mt-10 lg:gap-10 md:grid-cols-3 xl:grid-cols-3">
+      {
+        relatedPosts
+          .slice(2)
+          .map((post) => <Postcard postData={post} aspect="square" />)
+      }
+    </div>
   </Container>
 </Layout>
