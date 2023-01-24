@@ -76,7 +76,9 @@ const imageUrl = typeof image !== "string" ? genImagePath(image) : image;
 
   {
     title && (
-      <figcaption class="mt-1 mb-2 text-center text-sm">{title}</figcaption>
+      <figcaption class="mt-1 mb-2 text-center text-sm px-2">
+        {title}
+      </figcaption>
     )
   }
 </figure>
@@ -86,10 +88,11 @@ const imageUrl = typeof image !== "string" ? genImagePath(image) : image;
 
   function openModal(imageElement) {
     document.body.style.overflow = "hidden";
+    console.log(imageElement.getAttribute("data-upscale"));
+
     const imageData = JSON.parse(imageElement.getAttribute("data-image"));
-    const shouldUseUpscaledVersion = JSON.parse(
-      imageElement.getAttribute("data-upscale")
-    );
+    const shouldUseUpscaledVersion =
+      imageElement.getAttribute("data-upscale") !== null;
 
     const dataAttributesConfig = [
       ["prompt", "prompt"],

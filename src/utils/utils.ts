@@ -1,4 +1,4 @@
-import { GenImage, SESSIONS } from "./../data/genImage";
+import { GenImage, Session } from "./../data/genImage";
 // import getReadingTime from "reading-time";
 import { toString } from "mdast-util-to-string";
 
@@ -44,3 +44,12 @@ export function genImagePathSR(genImage: GenImage): string {
 
 export const PROSE_DEFAULT =
   "prose prose-base md:prose-xl lg:prose:xl dark:prose-invert prose-a:no-underline prose-a:text-cyan-500 dark:prose-a:text-cyan-300";
+
+export const allSessionItems = (session: Session): string => {
+  const str = `[
+      ${Object.keys(session).map(
+        (e) => `SESSIONS.${session[e].session}.${session[e].slug},\n`
+      )}]`;
+
+  return str;
+};

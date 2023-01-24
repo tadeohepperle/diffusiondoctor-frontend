@@ -1,0 +1,15 @@
+{
+    "prompt": "a battle axe, dnd style, rpg item, highly detailed, ornaments",
+    "negative_prompt": "cropped, ((out of frame)), water. ugly, deformed, (blur)",
+    "guidance_scale": 35.2,
+    "prompt_strength": 0.8,
+    "seed": 8744088,
+    "width": 768,
+    "height": 768,
+    "num_inference_steps": 40,
+    "sampler_name": "ddim",
+    "stable_diffusion_model": "protogenX34Photorealism_1",
+    "session": "weapons1",
+    "slug": "a_battle_axe_dnd_style_rpg_item_highly_detailed_8744088_768x768_s40_g352_p08_protogenX34Photorealism_1_1615387787",
+    "file_type": "jpeg"
+}

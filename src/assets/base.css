@@ -64,3 +64,31 @@
   display: block;
   padding-bottom: 100%;
 }
+
+.alternating-background {
+  animation-name: alternate-bg;
+  animation-duration: 4s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@keyframes alternate-bg {
+  0% {
+    background-color: #121212;
+  }
+
+  30% {
+    background-color: #121212;
+  }
+  50% {
+    background-color: white;
+  }
+
+  80% {
+    background-color: white;
+  }
+
+  100% {
+    background-color: #121212;
+  }
+}
