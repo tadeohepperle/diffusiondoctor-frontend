@@ -1,0 +1,301 @@
+---
+import ImageGrid from "@components/content/ImageGrid.astro";
+import SpanImage from "@components/content/SpanImage.astro";
+import { authors } from "@data/authors";
+import { BlogPostDataNoSlug } from "@data/blogPost";
+import { categories } from "@data/category";
+import { MISC } from "@data/generated/misc";
+import { SESSIONS } from "@data/genImage";
+import { md } from "@utils/markdown";
+import { allSessionItems } from "@utils/utils";
+
+export const draft = false;
+
+export const data: BlogPostDataNoSlug = {
+  title: "Fantasy RPG Helmets made with Stable Diffusion",
+  excerpt:
+    "We can use Stable Diffusion to generate helemet images that can be used in RPGs as items or equipment.",
+  publishDate: "2023-01-26",
+  image: MISC.blogposts.helmets1.thumbnailhelmets_lq_jpg,
+  category: categories.challenge,
+  author: authors.tadeoHepperle,
+  tags: ["items", "games", "RPG"],
+};
+---
+
+<div>
+  {
+    md`
+# Stable Diffusion Helmets
+
+If you develop a Diablo-Style RPG, you want to give the player the possibility to equip lots of armor pieces. Including helmets, that can drop as loot from enemies or can be found in chests and give the player a number of stat boosts.
+
+In this article, we showcase to generate Helmets like these, with Stable Diffusion:
+    `
+  }
+  <ImageGrid
+    images={[
+      SESSIONS.helmets1
+        .knight_helmet_silver_iron_dnd_style_rpg_it_3539615_768x768_s25_g224_p08_protogenX34Photorealism_1_1027554906,
+      SESSIONS.helmets1
+        .leather_helmet_wooden_nails_dnd_style_rpg_2213396_768x768_s25_g224_p08_protogenX34Photorealism_1_1027554906,
+      SESSIONS.helmets1
+        .steel_helmet_poor_leather_cloth_silk_dirt_5537776_768x768_s25_g177_p08_protogenX34Photorealism_1_1027554906,
+      SESSIONS.helmets1
+        .leather_helmet_wooden_nails_dnd_style_rpg_7225119_768x768_s25_g224_p08_protogenX34Photorealism_1_1027554906,
+    ]}
+  />
+  {
+    md`
+I mostly used prompts like these:
+
+> knight ((helmet)), silver, iron, dnd style, rpg item, fantasy, medieval, highly detailed, ornaments, centered, front view
+
+With the negative prompt:
+
+> cropped, ((out of frame)), ugly, deformed, (blur)
+
+The results you see below are from the Protogen v3.4 model with 768x768 resolution, resulting from quickly drawn input images like these:
+    `
+  }
+  <div class="flex justify-center">
+    <div style="max-width: 500px">
+      <SpanImage image={MISC.blogposts.helmets1.helmetinputs_png} />
+    </div>
+  </div>
+  {
+    md`
+## Wooden style helmets
+
+The following helmets have a style that combines wooden and steel elements with each other. I personally really like it.
+    `
+  }
+  <ImageGrid
+    xDim={3}
+    mobileXDim={2}
+    images={[
+      SESSIONS.helmets1
+        .leather_helmet_wooden_nails_dnd_style_rpg_9528973_768x768_s25_g177_p08_protogenX34Photorealism_1_1027554906,
+
+      SESSIONS.helmets1
+        .leather_helmet_wooden_nails_dnd_style_rpg_573456_768x768_s25_g224_p08_protogenX34Photorealism_1_1027554906,
+      SESSIONS.helmets1
+        .leather_helmet_wooden_nails_dnd_style_rpg_7005453_768x768_s25_g177_p08_protogenX34Photorealism_1_1027554906,
+      SESSIONS.helmets1
+        .leather_helmet_wooden_nails_dnd_style_rpg_2265508_768x768_s25_g224_p08_protogenX34Photorealism_1_1027554906,
+      SESSIONS.helmets1
+        .leather_helmet_wooden_nails_dnd_style_rpg_3737328_768x768_s25_g224_p08_protogenX34Photorealism_1_1027554906,
+      SESSIONS.helmets1
+        .leather_helmet_wooden_nails_dnd_style_rpg_7937862_768x768_s25_g224_p08_protogenX34Photorealism_1_1027554906,
+    ]}
+  />
+  {
+    md`
+When experimenting with color, I found that wood, golden ornaments and teal go together very well and give somebeatiful helmets. The spike on the top however is sometimes a bit wrong and does not look too good.
+    `
+  }
+  <ImageGrid
+    xDim={3}
+    mobileXDim={2}
+    images={[
+      SESSIONS.helmets1
+        .leather_helmet_wooden_nails_dnd_style_rpg_1946937_768x768_s25_g224_p08_protogenX34Photorealism_1_1027554906,
+      SESSIONS.helmets1
+        .leather_helmet_wooden_nails_dnd_style_rpg_4494065_768x768_s25_g224_p08_protogenX34Photorealism_1_1027554906,
+      SESSIONS.helmets1
+        .leather_helmet_wooden_nails_dnd_style_rpg_6376691_768x768_s25_g224_p08_protogenX34Photorealism_1_1027554906,
+
+      SESSIONS.helmets1
+        .leather_helmet_wooden_nails_dnd_style_rpg_4219229_768x768_s25_g224_p08_protogenX34Photorealism_1_1027554906,
+      SESSIONS.helmets1
+        .leather_helmet_wooden_nails_dnd_style_rpg_2162060_768x768_s25_g224_p08_protogenX34Photorealism_1_1027554906,
+
+      SESSIONS.helmets1
+        .leather_helmet_wooden_nails_dnd_style_rpg_5839128_768x768_s25_g177_p08_protogenX34Photorealism_1_1027554906,
+    ]}
+  />
+  {
+    md`
+## Skull helmets
+    `
+  }
+  <ImageGrid
+    xDim={3}
+    mobileXDim={2}
+    images={[
+      SESSIONS.helmets1
+        .steel_helmet_bones_veins_alive_undead_dnd_3125458_768x768_s25_g177_p08_protogenX34Photorealism_1_1027554906,
+      SESSIONS.helmets1
+        .steel_helmet_bones_veins_alive_undead_dnd_91025_768x768_s25_g177_p08_protogenX34Photorealism_1_1027554906,
+      SESSIONS.helmets1
+        .steel_helmet_bones_veins_alive_undead_dnd_8462440_768x768_s25_g177_p08_protogenX34Photorealism_1_1027554906,
+    ]}
+  />
+  {
+    md`
+## Dark steel helmets
+
+Using a darker steel makes the golden ornaments shine more and gives an older more ancient look to these pieces of armor:
+    `
+  }
+  <ImageGrid
+    xDim={3}
+    mobileXDim={2}
+    images={[
+      SESSIONS.helmets1
+        .steel_helmet_bronze_coal_dark_steel_orname_3455011_768x768_s25_g177_p08_protogenX34Photorealism_1_1027554906,
+
+      SESSIONS.helmets1
+        .steel_helmet_bronze_coal_dark_steel_orname_5515844_768x768_s25_g177_p08_protogenX34Photorealism_1_1027554906,
+      SESSIONS.helmets1
+        .steel_helmet_bronze_coal_dark_steel_orname_3153749_768x768_s25_g177_p08_protogenX34Photorealism_1_1027554906,
+      SESSIONS.helmets1
+        .steel_helmet_bronze_coal_dark_steel_orname_2733817_768x768_s25_g177_p08_protogenX34Photorealism_1_1027554906,
+      SESSIONS.helmets1
+        .steel_helmet_bronze_coal_dark_steel_orname_9499879_768x768_s25_g177_p08_protogenX34Photorealism_1_1027554906,
+      SESSIONS.helmets1
+        .steel_helmet_bronze_coal_dark_steel_orname_1413531_768x768_s25_g177_p08_protogenX34Photorealism_1_1027554906,
+    ]}
+  />
+  {
+    md`
+## Weird mask-like helmets
+    `
+  }
+  <ImageGrid
+    xDim={3}
+    mobileXDim={2}
+    images={[
+      SESSIONS.helmets1
+        .knight_helmet_silver_iron_dnd_style_rpg_it_4484910_768x768_s25_g224_p08_protogenX34Photorealism_1_1027554906,
+      SESSIONS.helmets1
+        .knight_helmet_silver_iron_dnd_style_rpg_it_6923469_768x768_s25_g224_p08_protogenX34Photorealism_1_1027554906,
+
+      SESSIONS.helmets1
+        .knight_helmet_silver_iron_dnd_style_rpg_it_7020808_768x768_s25_g224_p08_protogenX34Photorealism_1_1027554906,
+    ]}
+  />
+  {
+    md`
+## Spiky Helmets:
+    `
+  }
+  <ImageGrid
+    xDim={4}
+    mobileXDim={3}
+    images={[
+      SESSIONS.helmets1
+        .knight_helmet_silver_iron_dnd_style_rpg_it_8799125_768x768_s25_g224_p08_protogenX34Photorealism_1_1027554906,
+      SESSIONS.helmets1
+        .knight_helmet_silver_dnd_style_rpg_item_fa_9882734_768x768_s25_g224_p08_protogenX34Photorealism_1_1799710332,
+      SESSIONS.helmets1
+        .knight_helmet_silver_iron_dnd_style_rpg_it_4163294_768x768_s25_g224_p08_protogenX34Photorealism_1_1027554906,
+      SESSIONS.helmets1
+        .knight_helmet_silver_iron_dnd_style_rpg_it_9221055_768x768_s25_g224_p08_protogenX34Photorealism_1_1027554906,
+    ]}
+  />
+  {
+    md`
+## Helmets with diamonds
+    `
+  }
+  <ImageGrid
+    xDim={4}
+    mobileXDim={3}
+    images={[
+      SESSIONS.helmets1
+        .steel_helmet_crystal_gem_stones_shiny_dnd_125082_768x768_s25_g177_p08_protogenX34Photorealism_1_1027554906,
+      SESSIONS.helmets1
+        .steel_helmet_crystal_gem_stones_shiny_dnd_8233079_768x768_s25_g177_p08_protogenX34Photorealism_1_1027554906,
+      SESSIONS.helmets1
+        .steel_helmet_crystal_gem_stones_shiny_dnd_8483624_768x768_s25_g177_p08_protogenX34Photorealism_1_1027554906,
+      SESSIONS.helmets1
+        .steel_helmet_crystal_gem_stones_shiny_dnd_3351310_768x768_s25_g177_p08_protogenX34Photorealism_1_1027554906,
+    ]}
+  />
+  {
+    md`
+## Trying a black background
+    `
+  }
+  <ImageGrid
+    xDim={4}
+    mobileXDim={3}
+    images={[
+      SESSIONS.helmets1
+        .diamond_helmet_gems_silver_horns_ornaments_4655269_768x768_s25_g177_p08_protogenX34Photorealism_1_405671871,
+
+      SESSIONS.helmets1
+        .steel_helmet_silver_diamond_guard_decorati_1814807_768x768_s25_g177_p08_protogenX34Photorealism_1_1756688597,
+      SESSIONS.helmets1
+        .diamond_helmet_gems_silver_horns_ornaments_1471387_768x768_s25_g177_p08_protogenX34Photorealism_1_405671871,
+      SESSIONS.helmets1
+        .diamond_helmet_gems_silver_horns_ornaments_6455532_768x768_s25_g229_p083_protogenX34Photorealism_1_405671871,
+    ]}
+  />
+  {
+    md`
+## Silver helmets with patterns
+
+Using a darker steel makes the golden ornaments shine more and gives an older more ancient look to these pieces ofarmor:
+    `
+  }
+  <ImageGrid
+    xDim={3}
+    mobileXDim={2}
+    images={[
+      SESSIONS.helmets1
+        .knight_helmet_silver_dnd_style_rpg_item_fa_3031977_768x768_s25_g224_p08_protogenX34Photorealism_1_1799710332,
+      SESSIONS.helmets1
+        .knight_helmet_silver_iron_dnd_style_rpg_it_9405833_768x768_s25_g224_p08_protogenX34Photorealism_1_1799710332,
+      SESSIONS.helmets1
+        .knight_helmet_silver_iron_dnd_style_rpg_it_8483198_768x768_s25_g224_p08_protogenX34Photorealism_1_1027554906,
+      SESSIONS.helmets1
+        .knight_helmet_silver_iron_dnd_style_rpg_it_2623686_768x768_s25_g224_p08_protogenX34Photorealism_1_1799710332,
+      SESSIONS.helmets1
+        .steel_helmet_silver_diamond_guard_decorati_8074195_768x768_s25_g177_p08_protogenX34Photorealism_1_1756688597,
+      SESSIONS.helmets1
+        .steel_helmet_silver_diamond_guard_decorati_9747466_768x768_s25_g177_p08_protogenX34Photorealism_1_1756688597,
+    ]}
+  />
+  {
+    md`
+## Fails and weird results
+    `
+  }
+  <ImageGrid
+    xDim={3}
+    mobileXDim={2}
+    images={[
+      SESSIONS.helmets1
+        .steel_helmet_silver_diamond_guard_decorati_3500134_768x768_s25_g177_p08_protogenX34Photorealism_1_1756688597,
+
+      SESSIONS.helmets1
+        .steel_helmet_poor_leather_cloth_silk_dirt_7905545_768x768_s25_g177_p08_protogenX34Photorealism_1_1027554906,
+
+      SESSIONS.helmets1
+        .paper_helmet_carton_made_of_paper_ornaments_7781172_768x768_s30_g157_p076_protogenX34Photorealism_1_1027554906,
+
+      SESSIONS.helmets1
+        .steel_helmet_silver_diamond_decorations_or_970571_768x768_s30_g229_p083_protogenX34Photorealism_1_1027554906,
+
+      SESSIONS.helmets1
+        .steel_helmet_crystal_gem_stones_shiny_dnd_2688226_768x768_s25_g177_p08_protogenX34Photorealism_1_1027554906,
+      SESSIONS.helmets1
+        .knight_helmet_silver_iron_dnd_style_rpg_it_8948387_768x768_s25_g224_p08_protogenX34Photorealism_1_1027554906,
+    ]}
+    titles={[
+      "two stacked helmets are safer than one. Same goes for condoms.",
+      "when you look for a creative use of the scalp of your opponents.",
+      "Lifehack: A helmet from paper is lighter than a metal one.",
+      "These Spikes are almost like a crown.",
+      "The face looks like it does not really want to be there.",
+      "Just wanted the helmet, not the rest of the previous owner.",
+    ]}
+  />
+  {
+    md`
+
+    `
+  }
+</div>

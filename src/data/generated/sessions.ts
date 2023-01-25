@@ -13,3 +13,5 @@ import { __woman } from "./woman/woman";
 export const woman: typeof __woman & gen.Session = __woman;
 import { __weapons1 } from "./weapons1/weapons1";
 export const weapons1: typeof __weapons1 & gen.Session = __weapons1;
+import { __helmets1 } from "./helmets1/helmets1";
+export const helmets1: typeof __helmets1 & gen.Session = __helmets1;

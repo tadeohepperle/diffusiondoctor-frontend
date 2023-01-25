@@ -48,7 +48,7 @@ export const PROSE_DEFAULT =
 export const allSessionItems = (session: Session): string => {
   const str = `[
       ${Object.keys(session).map(
-        (e) => `SESSIONS.${session[e].session}.${session[e].slug},\n`
+        (e) => `SESSIONS.${session[e].session}.${session[e].slug}\n`
       )}]`;
 
   return str;
