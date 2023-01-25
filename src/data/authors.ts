@@ -10,6 +10,6 @@ export const authors = {
     name: "Tadeo Hepperle",
     slug: "tadeo-hepperle",
     image: "./src/assets/authors/tadeo_hp_lq.jpg",
-    bio: "Tadeo Hepperle is a Software Developer with a passion for Rust, Dart and Deep Learning. He loves to explore state of the art generative artificial intelligence models.",
+    bio: "Hey, I am Tadeo, a Software Developer with a passion for Rust, Dart and Deep Learning. I love to explore how to make use of generative AI, especially for games.",
   } as Author,
 };
