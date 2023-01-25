@@ -5,7 +5,11 @@ A blog about stable diffusion image generation.
 
 ## Deployment
 
-link: [DiffusionDoctor.com](https://diffusiondoctor.com)
+deployed and authored at: [DiffusionDoctor.com](https://diffusiondoctor.com)
+
+<a href="https://diffusiondoctor.com">
+<img src="https://user-images.githubusercontent.com/62739623/214708863-0a5b6552-f00c-41b6-8187-bad1a9462f43.png"/>
+</a>
 
 ## Editor / Developer Notes
 
