@@ -1,0 +1,406 @@
+---
+import ImageGrid from "@components/content/ImageGrid.astro";
+import SpanImage from "@components/content/SpanImage.astro";
+import { authors } from "@data/authors";
+import { BlogPostDataNoSlug } from "@data/blogPost";
+import { categories } from "@data/category";
+import { MISC } from "@data/generated/misc";
+import { SESSIONS } from "@data/genImage";
+import { md } from "@utils/markdown";
+import { allSessionItems } from "@utils/utils";
+
+export const draft = false;
+
+export const data: BlogPostDataNoSlug = {
+  title: "AI-generated people from different countries",
+  excerpt:
+    "We used the new Protogen v3.4 Stable Diffusion Model to generate pictures of men and women from different countries",
+  publishDate: "2023-01-27",
+  image: MISC.blogposts.countriespeople.manthumbnail_jpg,
+  category: categories.dicoveries,
+  author: authors.tadeoHepperle,
+  tags: ["people", "Stable Diffusion", "faces", "nationalities"],
+};
+---
+
+<div>
+  {
+    md`
+# Men and women from all around the world
+
+I wanted to see how the new [Protogen v3.4](https://civitai.com/models/3666/protogen-x34-photorealism-official-release) Stable Diffusion model depicts people of various personalities. After experimenting with seeds for a good framing I decided to fix the seed \`128\` for all images to make a fair comparison possible.
+In the prompt I just interchanged nationality and gender, e.g. \`brazilian woman\` and held all other variables constant. To see the exact prompts and parameters, just tap or hover over any of the images.
+
+## Western countries
+
+The results were quite amazing, let's start with some western countries, it is clear that these results will only vary to a minimal degree.
+
+Here is a close comparison of men and women from the 9 western countries. I honestly think the American man was supposed to hold a gun, The object he is holding mildly suggests it.
+    `
+  }
+  <ImageGrid
+    details={false}
+    upscaleInModal={false}
+    xDim={3}
+    mobileXDim={1}
+    images={[
+      SESSIONS.countriespeople1
+        .modelshoot_style_extremely_detailed_CG_8k_wallpa_128_768x768_s50_g157_p08_protogenX34Photorealism_1_242122328,
+      SESSIONS.countriespeople1
+        .modelshoot_style_extremely_detailed_CG_8k_wallpa_128_768x768_s50_g157_p08_protogenX34Photorealism_1_2135793794,
+      SESSIONS.countriespeople1
+        .modelshoot_style_extremely_detailed_CG_8k_wallpa_128_768x768_s50_g157_p08_protogenX34Photorealism_1_1873741678,
+      SESSIONS.countriespeople1
+        .modelshoot_style_extremely_detailed_CG_8k_wallpa_128_768x768_s50_g157_p08_protogenX34Photorealism_1_52113850,
+      SESSIONS.countriespeople1
+        .modelshoot_style_extremely_detailed_CG_8k_wallpa_128_768x768_s50_g157_p08_protogenX34Photorealism_1_402588730,
+      SESSIONS.countriespeople1
+        .modelshoot_style_extremely_detailed_CG_8k_wallpa_128_768x768_s50_g157_p08_protogenX34Photorealism_1_621943833,
+      SESSIONS.countriespeople1
+        .modelshoot_style_extremely_detailed_CG_8k_wallpa_128_768x768_s50_g157_p08_protogenX34Photorealism_1_453579393,
+      SESSIONS.countriespeople1
+        .modelshoot_style_extremely_detailed_CG_8k_wallpa_128_768x768_s50_g157_p08_protogenX34Photorealism_1_1101352137,
+
+      SESSIONS.countriespeople1
+        .modelshoot_style_extremely_detailed_CG_8k_wallpa_128_768x768_s50_g157_p08_protogenX34Photorealism_1_286168443,
+    ]}
+    titles={[
+      "American man",
+      "German man",
+      "French man",
+      "Spanish man",
+      "Italian man",
+      "Russian man",
+      "Finnish man",
+      "Scottish man",
+      "Irish man",
+    ]}
+  />
+  {
+    md`
+All men are well dressed and have high similarity, which is to expect because they are all from the same seed. I am surprised the Irish man does not have red hair, I thought all Irish people are gingers. The Russian man is the only one looking a bit depressed. I would be too if my country's president was Putin.
+    `
+  }
+  <ImageGrid
+    details={false}
+    upscaleInModal={false}
+    xDim={3}
+    mobileXDim={1}
+    images={[
+      SESSIONS.countriespeople1
+        .modelshoot_style_extremely_detailed_CG_8k_wallpa_128_768x768_s50_g157_p08_protogenX34Photorealism_1_260409280,
+      SESSIONS.countriespeople1
+        .modelshoot_style_extremely_detailed_CG_8k_wallpa_128_768x768_s50_g157_p08_protogenX34Photorealism_1_515201050,
+      SESSIONS.countriespeople1
+        .modelshoot_style_extremely_detailed_CG_8k_wallpa_128_768x768_s50_g157_p08_protogenX34Photorealism_1_2086188038,
+
+      SESSIONS.countriespeople1
+        .modelshoot_style_extremely_detailed_CG_8k_wallpa_128_768x768_s50_g157_p08_protogenX34Photorealism_1_1825037090,
+
+      SESSIONS.countriespeople1
+        .modelshoot_style_extremely_detailed_CG_8k_wallpa_128_768x768_s50_g157_p08_protogenX34Photorealism_1_1352445394,
+      SESSIONS.countriespeople1
+        .modelshoot_style_extremely_detailed_CG_8k_wallpa_128_768x768_s50_g157_p08_protogenX34Photorealism_1_324163135,
+
+      SESSIONS.countriespeople1
+        .modelshoot_style_extremely_detailed_CG_8k_wallpa_128_768x768_s50_g157_p08_protogenX34Photorealism_1_1086367273,
+
+      SESSIONS.countriespeople1
+        .modelshoot_style_extremely_detailed_CG_8k_wallpa_128_768x768_s50_g157_p08_protogenX34Photorealism_1_1445785951,
+
+      SESSIONS.countriespeople1
+        .modelshoot_style_extremely_detailed_CG_8k_wallpa_128_768x768_s50_g157_p08_protogenX34Photorealism_1_881765725,
+    ]}
+    titles={[
+      "American woman",
+      "German woman",
+      "French woman",
+      "Spanish woman",
+      "Italian woman",
+      "Russian woman",
+      "Finnish woman",
+      "Scottish woman",
+      "Irish woman",
+    ]}
+  />
+  {
+    md`
+The french woman Stable Diffusion generated has the most beautiful interior in the background. The Scottish and Irish woman seems to somewhat reflect their country's national colors in their top, but this could also be a random effect.
+
+## Greeks, Indonesians, and Brazilians
+
+I want to show the Greek man and woman separately, because the Greek guy is the only western guy, that Stable Diffusion generated without a shirt on. And with beautiful muscled. I think this has to do with the plethora of Greek mythological heroes and statues. The same goes for the Indonesian and Brazilian guys that also show their beach bodies.
+    `
+  }
+  <ImageGrid
+    details={false}
+    upscaleInModal={false}
+    xDim={3}
+    mobileXDim={1}
+    images={[
+      SESSIONS.countriespeople1
+        .modelshoot_style_extremely_detailed_CG_8k_wallpa_128_768x768_s50_g157_p08_protogenX34Photorealism_1_232939386,
+      SESSIONS.countriespeople1
+        .modelshoot_style_extremely_detailed_CG_8k_wallpa_128_768x768_s50_g157_p08_protogenX34Photorealism_1_1297845794,
+      SESSIONS.countriespeople1
+        .modelshoot_style_extremely_detailed_CG_8k_wallpa_128_768x768_s50_g157_p08_protogenX34Photorealism_1_576660464,
+    ]}
+    titles={["Greek man", "Indonesian man", "Brazilian man"]}
+  />
+  {
+    md`
+However, the greek girl looks very similar to the Italian one, even the earring matches. The Indonesian woman's dress looks very good and detailed. The Brazilian girl is the first female to show some more skin.
+    `
+  }
+  <ImageGrid
+    details={false}
+    upscaleInModal={false}
+    xDim={3}
+    mobileXDim={1}
+    images={[
+      SESSIONS.countriespeople1
+        .modelshoot_style_extremely_detailed_CG_8k_wallpa_128_768x768_s50_g157_p08_protogenX34Photorealism_1_1528183058,
+      SESSIONS.countriespeople1
+        .modelshoot_style_extremely_detailed_CG_8k_wallpa_128_768x768_s50_g157_p08_protogenX34Photorealism_1_677559690,
+      SESSIONS.countriespeople1
+        .modelshoot_style_extremely_detailed_CG_8k_wallpa_128_768x768_s50_g157_p08_protogenX34Photorealism_1_891807784,
+    ]}
+    titles={["Greek woman", "Indonesian woman", "Brazilian woman"]}
+  />
+  {
+    md`
+## Asians
+
+Let's look at how the model draws _Vietnamese_, _Chinese_ and _Japanese_ people. The men have more variability in their poses than the women. I would like to know what the Japanese guy has in his hand. A brush?
+    `
+  }
+  <ImageGrid
+    details={false}
+    upscaleInModal={false}
+    xDim={3}
+    mobileXDim={1}
+    images={[
+      SESSIONS.countriespeople1
+        .modelshoot_style_extremely_detailed_CG_8k_wallpa_128_768x768_s50_g157_p08_protogenX34Photorealism_1_723124489,
+      SESSIONS.countriespeople1
+        .modelshoot_style_extremely_detailed_CG_8k_wallpa_128_768x768_s50_g157_p08_protogenX34Photorealism_1_1072182285,
+
+      SESSIONS.countriespeople1
+        .modelshoot_style_extremely_detailed_CG_8k_wallpa_128_768x768_s50_g157_p08_protogenX34Photorealism_1_47028695,
+    ]}
+    titles={["Vietnamese man", "Chinese man", "Japanese man"]}
+  />
+  {
+    md`
+I cannot judge if the clothes are actually in any way related to the respective cultures. It would be interesting if an expert had a look at it.
+    `
+  }
+  <ImageGrid
+    details={false}
+    upscaleInModal={false}
+    xDim={3}
+    mobileXDim={1}
+    images={[
+      SESSIONS.countriespeople1
+        .modelshoot_style_extremely_detailed_CG_8k_wallpa_128_768x768_s50_g157_p08_protogenX34Photorealism_1_149664481,
+
+      SESSIONS.countriespeople1
+        .modelshoot_style_extremely_detailed_CG_8k_wallpa_128_768x768_s50_g157_p08_protogenX34Photorealism_1_586757349,
+      SESSIONS.countriespeople1
+        .modelshoot_style_extremely_detailed_CG_8k_wallpa_128_768x768_s50_g157_p08_protogenX34Photorealism_1_1038331857,
+    ]}
+    titles={["Vietnamese woman", "Chinese woman", "Japanese woman"]}
+  />
+  {
+    md`
+## Indian, Arabs, and Egyptians
+
+Not very surprisingly Egyptians and Arabs look almost the same because Egypt is a subpart of the Arab world. But I like the distinctive Clothes a lot.
+    `
+  }
+  <ImageGrid
+    details={false}
+    upscaleInModal={false}
+    xDim={3}
+    mobileXDim={1}
+    images={[
+      SESSIONS.countriespeople1
+        .modelshoot_style_extremely_detailed_CG_8k_wallpa_128_768x768_s50_g157_p08_protogenX34Photorealism_1_566332369,
+      SESSIONS.countriespeople1
+        .modelshoot_style_extremely_detailed_CG_8k_wallpa_128_768x768_s50_g157_p08_protogenX34Photorealism_1_598928918,
+      SESSIONS.countriespeople1
+        .modelshoot_style_extremely_detailed_CG_8k_wallpa_128_768x768_s50_g157_p08_protogenX34Photorealism_1_1859692269,
+    ]}
+    titles={["Indian man", "Arabian man", "Egyptian man"]}
+  />
+  {
+    md`
+Especially the Egyptian woman looks absolutely gorgeous and I did not expect such results from Stable Diffusion. It even put a micro Sarcophagus in the background.
+    `
+  }
+  <ImageGrid
+    details={false}
+    upscaleInModal={false}
+    xDim={3}
+    mobileXDim={1}
+    images={[
+      SESSIONS.countriespeople1
+        .modelshoot_style_extremely_detailed_CG_8k_wallpa_128_768x768_s50_g157_p08_protogenX34Photorealism_1_203707479,
+      SESSIONS.countriespeople1
+        .modelshoot_style_extremely_detailed_CG_8k_wallpa_128_768x768_s50_g157_p08_protogenX34Photorealism_1_1056805038,
+
+      SESSIONS.countriespeople1
+        .modelshoot_style_extremely_detailed_CG_8k_wallpa_128_768x768_s50_g157_p08_protogenX34Photorealism_1_1469607877,
+    ]}
+    titles={["Indian woman", "Arabian woman", "Egyptian woman"]}
+  />
+  {
+    md`
+## Somalians, Nigerians, and Jamaicans
+
+Yes, I just grouped these because they all are black people according to Stable Diffusion. The guy from Jamaica has something around his neck that looks like a stopwatch. Usain Bolt is the fastest man alive and also Jamaican. Coincidence?
+    `
+  }
+  <ImageGrid
+    details={false}
+    upscaleInModal={false}
+    xDim={3}
+    mobileXDim={1}
+    images={[
+      SESSIONS.countriespeople1
+        .modelshoot_style_extremely_detailed_CG_8k_wallpa_128_768x768_s50_g157_p08_protogenX34Photorealism_1_94067694,
+      SESSIONS.countriespeople1
+        .modelshoot_style_extremely_detailed_CG_8k_wallpa_128_768x768_s50_g157_p08_protogenX34Photorealism_1_1928559243,
+      SESSIONS.countriespeople1
+        .modelshoot_style_extremely_detailed_CG_8k_wallpa_128_768x768_s50_g157_p08_protogenX34Photorealism_1_204284662,
+    ]}
+    titles={["Somalian man", "Nigerian man", "Jamaican man"]}
+  />
+  {
+    md`
+It is shocking how the small Somalian girl appears to hold a gun in her hands! For years there has been a civil war in Somalia, even involving child soldiers and this generated picture seems to be a reflection of that.
+    `
+  }
+  <ImageGrid
+    details={false}
+    upscaleInModal={false}
+    xDim={3}
+    mobileXDim={1}
+    images={[
+      SESSIONS.countriespeople1
+        .modelshoot_style_extremely_detailed_CG_8k_wallpa_128_768x768_s50_g157_p08_protogenX34Photorealism_1_1216473222,
+      SESSIONS.countriespeople1
+        .modelshoot_style_extremely_detailed_CG_8k_wallpa_128_768x768_s50_g157_p08_protogenX34Photorealism_1_1068706845,
+      SESSIONS.countriespeople1
+        .modelshoot_style_extremely_detailed_CG_8k_wallpa_128_768x768_s50_g157_p08_protogenX34Photorealism_1_239202930,
+    ]}
+    titles={["Somalian woman", "Nigerian woman", "Jamaican woman"]}
+  />
+  {
+    md`
+### **Native Americans**
+
+When I saw the so-called _Native American_ man I had to laugh pretty hard. Never have I seen such a funny hat, I am pretty sure no native American wore a hat of feathers like this.
+    `
+  }
+  <ImageGrid
+    details={false}
+    upscaleInModal={false}
+    xDim={2}
+    mobileXDim={1}
+    images={[
+      SESSIONS.countriespeople1
+        .modelshoot_style_extremely_detailed_CG_8k_wallpa_128_768x768_s50_g157_p08_protogenX34Photorealism_1_598364431,
+      SESSIONS.countriespeople1
+        .modelshoot_style_extremely_detailed_CG_8k_wallpa_128_768x768_s50_g157_p08_protogenX34Photorealism_1_1509131977,
+    ]}
+  />
+  {
+    md`
+The woman looks beautiful, especially with the sunset lighting and landscape in the background. She is also one of the most realistic Stable Diffusion images I have seen.
+
+### **Jewish men and women**
+
+Even though Jewish people are mostly just normal western people, there have been a lot of stereotypes and racially charged depictions of Jewish people in history. That is why I wanted to see what the model outputs when I ask explicitly for Jewish people.
+    `
+  }
+  <ImageGrid
+    details={false}
+    upscaleInModal={false}
+    xDim={2}
+    mobileXDim={1}
+    images={[
+      SESSIONS.countriespeople1
+        .modelshoot_style_extremely_detailed_CG_8k_wallpa_128_768x768_s50_g157_p08_protogenX34Photorealism_1_481048922,
+      SESSIONS.countriespeople1
+        .modelshoot_style_extremely_detailed_CG_8k_wallpa_128_768x768_s50_g157_p08_protogenX34Photorealism_1_1714780866,
+    ]}
+  />
+  {
+    md`
+I cannot see any features that indicate any racial stereotypes about jewish people. These just look like generic white people.
+
+### **Prehistoric folks**
+
+I just put \`prehistoric\` instead of the nationality to see what I would get.
+The man looks very wild. But both look much more like cosplayers than real prehistoric people I imagine.
+    `
+  }
+  <ImageGrid
+    details={false}
+    upscaleInModal={false}
+    xDim={2}
+    mobileXDim={1}
+    images={[
+      SESSIONS.countriespeople1
+        .modelshoot_style_extremely_detailed_CG_8k_wallpa_128_768x768_s50_g157_p08_protogenX34Photorealism_1_1010915528,
+
+      SESSIONS.countriespeople1
+        .modelshoot_style_extremely_detailed_CG_8k_wallpa_128_768x768_s50_g157_p08_protogenX34Photorealism_1_184518992,
+    ]}
+  />
+  {
+    md`
+### **Dwarves - and dwarf women?**
+
+I know, we don't live on middle earth but I wanted to see how the AI would depict dwarves, especially dwarf women. I feel like the man looks reasonable, like a craftsman, while the woman is just a weird girl. But hey, nobody knows what dwarf women actually look like so maybe it's accurate.
+    `
+  }
+  <ImageGrid
+    details={false}
+    upscaleInModal={false}
+    xDim={2}
+    mobileXDim={1}
+    images={[
+      SESSIONS.countriespeople1
+        .modelshoot_style_extremely_detailed_CG_8k_wallpa_128_768x768_s50_g157_p08_protogenX34Photorealism_1_425043224,
+
+      SESSIONS.countriespeople1
+        .modelshoot_style_extremely_detailed_CG_8k_wallpa_128_768x768_s50_g157_p08_protogenX34Photorealism_1_1456377648,
+    ]}
+  />
+  {
+    md`
+### **People from a Cannibal tribe**
+
+I have to admit that _Cannibal tribe_ isn't really a good or precise term but I wanted to see anyway what the model comes up with.
+    `
+  }
+  <ImageGrid
+    details={false}
+    upscaleInModal={false}
+    xDim={2}
+    mobileXDim={1}
+    images={[
+      SESSIONS.countriespeople1
+        .modelshoot_style_extremely_detailed_CG_8k_wallpa_128_768x768_s50_g157_p08_protogenX34Photorealism_1_944959576,
+      SESSIONS.countriespeople1
+        .modelshoot_style_extremely_detailed_CG_8k_wallpa_128_768x768_s50_g157_p08_protogenX34Photorealism_1_1415181712,
+    ]}
+  />
+  {
+    md`
+Apparently, women from cannibal tribes have glowing gemstones engrained in their foreheads. And the man is more like some kind of Indiana Jones. That was unexpected.
+    `
+  }
+</div>

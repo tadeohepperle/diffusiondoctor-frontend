@@ -4,3 +4,4 @@ itemgen1
 woman
 weapons1
 helmets1
+countriespeople1

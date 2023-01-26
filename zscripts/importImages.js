@@ -18,6 +18,9 @@ appends sessions to zscripts/sessions_already_imported.txt such that they are no
 
 */
 
+const SHOULD_UPSCALE =
+  process.argv.length >= 3 && process.argv[2] == "noupscale" ? false : true;
+
 const STABLE_DIFFUSION_UI_SAVE_PATH = "../curated/ui";
 const STABLE_DIFFUSION_UI_PUBLIC_PATH = "./public/images/generated/ui";
 const SESSIONS_DATA_CODE_PATH = "./src/data/generated";
@@ -30,6 +33,7 @@ async function imimport() {
     .split("\n");
 
   let sessions = fs.readdirSync(STABLE_DIFFUSION_UI_SAVE_PATH);
+
   let allSessionsToImportDataObject = {};
   let slugsToOriginalFileNamesNoEnding = {};
   let sessionIdToOriginalFolderName = {};
@@ -57,12 +61,13 @@ async function imimport() {
     const sessionContents = fs.readdirSync(
       `${STABLE_DIFFUSION_UI_SAVE_PATH}/${sessionFolderName}`
     );
+
     const sessionContentsJson = sessionContents.filter((e) =>
       e.endsWith(".json")
     );
 
     allSessionsToImportDataObject[sessionId] = {};
-
+    console.log(sessionContentsJson);
     for (var jsonFileName of sessionContentsJson) {
       const jsonString = fs.readFileSync(
         `${STABLE_DIFFUSION_UI_SAVE_PATH}/${sessionFolderName}/${jsonFileName}`,
@@ -75,6 +80,7 @@ async function imimport() {
         jsonFileNameNoEnding,
         sessionId
       );
+
       slugsToOriginalFileNamesNoEnding[genImage.slug] = jsonFileNameNoEnding;
       allSessionsToImportDataObject[sessionId][genImage.slug] = genImage;
     }
@@ -94,6 +100,7 @@ async function imimport() {
     if (!fs.existsSync(`${STABLE_DIFFUSION_UI_PUBLIC_PATH}/${sessionId}`)) {
       fs.mkdirSync(`${STABLE_DIFFUSION_UI_PUBLIC_PATH}/${sessionId}`);
     }
+    console.log(sessionData);
     for (const slug of Object.keys(sessionData)) {
       const fileNameNoEnding = slugsToOriginalFileNamesNoEnding[slug];
 
@@ -118,14 +125,21 @@ async function imimport() {
           continue;
         }
       }
+
       // upscale the image:
       const fileType = allSessionsToImportDataObject[sessionId][slug].file_type;
       const imageFilePathInPublic = `${STABLE_DIFFUSION_UI_PUBLIC_PATH}/${sessionId}/${slug}.${fileType}`;
-      upscaleImage(imageFilePathInPublic);
-      const upscaledImagePath =
-        imageFilePathInPublic.substring(0, imageFilePathInPublic.length - 5) +
-        "SR4.jpeg";
-      compressImage(upscaledImagePath);
+      if (SHOULD_UPSCALE) {
+        upscaleImage(imageFilePathInPublic);
+        console.log("upscaled");
+        const upscaledImagePath =
+          imageFilePathInPublic.substring(0, imageFilePathInPublic.length - 5) +
+          "SR4.jpeg";
+        compressImage(upscaledImagePath);
+        console.log("compressed");
+      } else {
+        console.log("no upscale");
+      }
     }
     // generate type file for each session:
     const sessionsDataCodePath = `${SESSIONS_DATA_CODE_PATH}/${sessionId}`;
@@ -187,7 +201,7 @@ function extractGenImageInfoFromJson(json, fileNameNoEnding, sessionId) {
   }_g${json.guidance_scale}_p${
     json.prompt_strength
   }_${stable_diffusion_model}_${Math.abs(
-    hashCode(json.negative_prompt + json.sampler_name)
+    hashCode(json.negative_prompt + json.sampler_name + json.prompt)
   )}`
     .replaceAll(".", "")
     .replaceAll("-", "_");

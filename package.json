@@ -10,6 +10,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "imimport": "node zscripts/importImages.js",
+    "imimportnoup": "node zscripts/importImages.js noupscale",
     "miscimport": "node zscripts/importMisc.js"
   },
   "dependencies": {

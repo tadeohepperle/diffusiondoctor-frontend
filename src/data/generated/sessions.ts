@@ -15,3 +15,6 @@ import { __weapons1 } from "./weapons1/weapons1";
 export const weapons1: typeof __weapons1 & gen.Session = __weapons1;
 import { __helmets1 } from "./helmets1/helmets1";
 export const helmets1: typeof __helmets1 & gen.Session = __helmets1;
+
+import { __countriespeople1 } from "./countriespeople1/countriespeople1";
+export const countriespeople1: typeof __countriespeople1 & gen.Session = __countriespeople1;
