@@ -9,23 +9,18 @@ import markdownIntegration from "@astropub/md";
 import remarkGfm from "remark-gfm";
 
 // https://astro.build/config
+
+// https://astro.build/config
 export default defineConfig({
   outDir: "./dist",
   site: "https://diffusiondoctor.com",
-  integrations: [
-    tailwind(),
-    image({
-      serviceEntryPoint: "@astrojs/image/sharp",
-    }),
-    mdx(),
-    sitemap(),
-    react(),
-    markdownIntegration(),
-  ],
+  integrations: [tailwind(), image({
+    serviceEntryPoint: "@astrojs/image/sharp"
+  }), mdx(), sitemap(), react(), markdownIntegration()],
   markdown: {
     remarkPlugins: [remarkGfm],
-    rehypePlugins: [],
+    rehypePlugins: []
     // syntaxHighlight: 'shiki'
     // syntaxHighlight: 'prism'
-  },
+  }
 });
